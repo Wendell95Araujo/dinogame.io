@@ -74,7 +74,7 @@ function novoGame() {
 }
 
 function openGame() {
-    myGame = window.open("game.html", "_blank");
+    myGame = window.open("game", "_blank");
 }
   
 function closeGame() {
