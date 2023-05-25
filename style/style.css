@@ -168,7 +168,7 @@ body {
 }
 
 .player {
-    filter: drop-shadow(-20px 55px 15px #000000);
+    filter: drop-shadow(-20px 55px 10px #000000);
 }
 
 #playerWalk, #playerJump, #playerDown {

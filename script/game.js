@@ -2,6 +2,7 @@
 function loading(){
     lerStorage();
     $('#load').css('display','none');
+    window.scrollTo(0,0);
     Controller.search();
 }
 
@@ -74,7 +75,7 @@ function novoGame() {
 }
 
 function openGame() {
-    myGame = window.open("game", "_blank", "noopener, noreferrer");
+    myGame = window.open("game.html", "_blank");
 }
   
 function closeGame() {
@@ -411,24 +412,15 @@ function playGame() {
     let isGameOver = false;
 
     let centroSol = solLuaLeft + (solWidth / 2);
-    let centroNuvem1 = nuvem1Left + (nuvem1Width / 2);
-    let centroNuvem2 = nuvem2Left + (nuvem2Width / 2);
-    let centroNuvem3 = nuvem3Left + (nuvem3Width / 2);
-    let centroNuvem4 = nuvem4Left + (nuvem4Width / 2);
-    let centroNuvem5 = nuvem5Left + (nuvem5Width / 2);
-    let centroNuvem6 = nuvem6Left + (nuvem6Width / 2);
+
     let centroPlayer = 80;
 
+    
     let playerSombraVer = 55;
     let playerSombraHor = -20;
     let playerSombraTam = 15;
 
-    let nuvem1SombraHor = 0;
-    let nuvem2SombraHor = 0;
-    let nuvem3SombraHor = 0;
-    let nuvem4SombraHor = 0;
-    let nuvem5SombraHor = 0;
-    let nuvem6SombraHor = 0;
+    window.scrollTo(0,0);
     
     count++;
     inicio++;
@@ -586,14 +578,13 @@ function playGame() {
                 if (inicio % 2 === 1) {
                 $('#textButton1').css('display','none')
                 $('#textButton2').css('display','block');
-            }
-            if (inicio % 2 === 0) {
-                $('#textButton1').css('display','block')
-                $('#textButton2').css('display','none')
-            }
+                }
+                if (inicio % 2 === 0) {
+                    $('#textButton1').css('display','block')
+                    $('#textButton2').css('display','none')
+                }
             }
             
-            console.log(inicio);
             
             if (score > 1) {
 
@@ -786,28 +777,59 @@ function playGame() {
         solLuaLeft -= 0.2;
         solOuLua.style.left = solLuaLeft + 'px';
 
+        centroSol = solLuaLeft + (solWidth / 2);
+
+        let centroNuvem1 = nuvem1Left + 50;
+        let centroNuvem2 = nuvem2Left + 50;
+        let centroNuvem3 = nuvem3Left + 50;
+        let centroNuvem4 = nuvem4Left + 50;
+        let centroNuvem5 = nuvem5Left + 50;
+        let centroNuvem6 = nuvem6Left + 50;
+
+
+        let central = parseInt((centroSol - centroPlayer) / 10);
+
+        let centralN1 = parseInt((centroSol - centroNuvem1) / 10);
+        let centralN2 = parseInt((centroSol - centroNuvem2) / 10);
+        let centralN3 = parseInt((centroSol - centroNuvem3) / 10);
+        let centralN4 = parseInt((centroSol - centroNuvem4) / 10);
+        let centralN5 = parseInt((centroSol - centroNuvem5) / 10);
+        let centralN6 = parseInt((centroSol - centroNuvem6) / 10);
+
+        let nuvem1SombraHor = -centralN1;
+        let nuvem2SombraHor = -centralN2;
+        let nuvem3SombraHor = -centralN3;
+        let nuvem4SombraHor = -centralN4;
+        let nuvem5SombraHor = -centralN5;
+        let nuvem6SombraHor = -centralN6;
+
         if (tema === 0) {
+
             playerSombraTam = 15;
+
         } else if (tema === 1) {
+
             playerSombraTam = 25
         }
 
-
-        if (centroSol - centroPlayer > 1500) {
-            playerSombraHor = -70;
-        } else if (centroSol - centroPlayer > 1000) {
-            playerSombraHor = -60;
-        } else if (centroSol - centroPlayer > 500) {
-            playerSombraHor = -40;
-        } else if (centroSol - centroPlayer < 120) {
-            playerSombraHor = 0;
-        } else if (centroSol - centroPlayer < 80) {
-            playerSombraHor = 20;
+        if (central >= 100) {
+            playerSombraHor = -100;
         } else {
-            playerSombraHor = -20;
+            playerSombraHor = -central;
         }
 
+        
+
         player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
+        
+        /*
+        nuvem1S.css('filter','drop-shadow(' + nuvem1SombraHor + 'px 210px 15px #000000);');
+        nuvem2S.css('filter','drop-shadow(' + nuvem2SombraHor + 'px 150px 15px #000000);');
+        nuvem3S.css('filter','drop-shadow(' + nuvem3SombraHor + 'px 460px 15px #000000);');
+        nuvem4S.css('filter','drop-shadow(' + nuvem4SombraHor + 'px 355px 15px #000000);');
+        nuvem5S.css('filter','drop-shadow(' + nuvem5SombraHor + 'px 305px 15px #000000);');
+        nuvem6S.css('filter','drop-shadow(' + nuvem6SombraHor + 'px 405px 15px #000000);');
+        */
 
 
         score++;
