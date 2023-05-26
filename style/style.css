@@ -267,13 +267,14 @@ body {
     width: 1920px;
     height: 50px;
     background-color: black;
-    vertical-align: middle;
 }
 
 #info {
     font-size: 15px;
     color: #FFFFFF;
-    margin: auto 15px;
+    bottom: 20px;
+    position: absolute;
+    left: 15px;
 }
 
 /*-------------------------*/
