@@ -431,6 +431,7 @@ function playGame() {
     if (inicio > 3) {
         $('#textController').css('display','none');
     }
+    
 
     $('#textButton1').css('display','none')
 
@@ -456,9 +457,14 @@ function playGame() {
 
         $(".chao").attr('src', 'img/fundo' + selectBG + '.png')
         if (inicio % 4 === 0) {
-            selectMusic = parseInt(Math.random() * (4) + 1)
+            $('#info').css('display','none');
+            selectMusic = parseInt(Math.random() * (4) + 1);
         }
     }
+    
+    if (inicio % 3 === 0) {
+        $('#info').css('display','block');
+        }
 
     playerWalk();
     obstacle.style.display = 'block';
