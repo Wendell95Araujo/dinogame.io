@@ -270,11 +270,11 @@ body {
 }
 
 #info {
-    font-size: 15px;
+    font-size: 20px;
     color: #FFFFFF;
-    top: 505px;
-    position: absolute;
-    left: 50px;
+    padding: 15px 0;
+    width: 500px;
+    text-align: right;
 }
 
 /*-------------------------*/
@@ -511,6 +511,10 @@ body {
     .subtituloLoad2 {
         margin: 10px auto 10px;
         font-size: 10px;
+    }
+
+    #info {
+        width: 400px;
     }
 
     #Pontuacao {

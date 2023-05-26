@@ -428,6 +428,10 @@ function playGame() {
     recordNew = 0;
     speed = 5;
 
+    if (inicio > 3) {
+        $('#textController').css('display','none');
+    }
+
     $('#textButton1').css('display','none')
 
     if (conexao === 1) {
@@ -980,7 +984,7 @@ window.addEventListener('gc.controller.found', function(event) {
         $('.buttonsHelpPlay').css('display','block');
         $('#textButton').css('display','none');
         $('#imgPlay').css('display','none');
-         $('#textController').css('display','none');
+        $('#textController').css('display','none');
     }
 }, false);
 
