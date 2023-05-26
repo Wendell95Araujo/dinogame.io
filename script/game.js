@@ -457,13 +457,13 @@ function playGame() {
 
         $(".chao").attr('src', 'img/fundo' + selectBG + '.png')
         if (inicio % 4 === 0) {
-            $('#info').css('display','none');
+            $('#info').css('display','block');
             selectMusic = parseInt(Math.random() * (4) + 1);
         }
     }
     
-    if (inicio % 3 === 0) {
-        $('#info').css('display','block');
+    if (inicio % 5 === 0) {
+        $('#info').css('display','none');
         }
 
     playerWalk();
