@@ -272,7 +272,7 @@ body {
 #info {
     font-size: 15px;
     color: #FFFFFF;
-    bottom: 0;
+    top: 545px;
     position: absolute;
     left: 50px;
 }
