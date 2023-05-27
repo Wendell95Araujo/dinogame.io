@@ -986,6 +986,7 @@ window.addEventListener('gc.controller.found', function(event) {
         $('#textButton').css('display','none');
         $('#imgPlay').css('display','none');
         $('#textController').css('display','none');
+        $('#textButton1').css('display','none')
     } else {
         $('.buttonsHelpPlay').css('display','block');
         $('#textButton').css('display','none');
