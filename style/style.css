@@ -138,7 +138,7 @@ body {
 }
 
 #fundoEstrela2 {
-    left: 1920px;
+    left: 1919px;
 }
 
 #chao1, #chao2, .chao {
@@ -153,7 +153,7 @@ body {
 }
 
 #chao2 {
-    left: 1920px;
+    left: 1919px;
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
