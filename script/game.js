@@ -681,7 +681,7 @@ function playGame() {
     }
     
     function playPulo() {
-        audioJump.volume = 0.1;
+        audioJump.volume = 0.5;
         audioJump.play();
     }
 
