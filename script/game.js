@@ -896,21 +896,21 @@ function playGame() {
         }
         
         if (chao1Left <= -gameAreaWidth) {
-            chao1Left = gameAreaWidth;
+            chao1Left = gameAreaWidth - 1;
         }
         if (chao2Left <= -gameAreaWidth) {
-            chao2Left = gameAreaWidth;
+            chao2Left = gameAreaWidth - 1;
         }
 
         if (fundoEstrela1Left <= -gameAreaWidth) {
-            fundoEstrela1Left = gameAreaWidth;
+            fundoEstrela1Left = gameAreaWidth - 1;
         }
         if (fundoEstrela2Left <= -gameAreaWidth) {
-            fundoEstrela2Left = gameAreaWidth;
+            fundoEstrela2Left = gameAreaWidth - 1;
         }
 
         if (solLuaLeft <= -300) {
-            solLuaLeft = 1920;
+            solLuaLeft = gameAreaWidth;
         }
 
         requestAnimationFrame(moveObstacle);
