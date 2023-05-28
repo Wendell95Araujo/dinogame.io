@@ -668,13 +668,13 @@ function playGame() {
     }
 
     function playPonto() {
-        $('#maneteON').css('display','none');
-        $('#buttonA').css('display','none');
         audioPonto.volume = 0.1;
         audioPonto.play();
     }
     
     function playPulo() {
+        $('#maneteON').css('display','none');
+        $('#buttonA').css('display','none');
         audioJump.play();
     }
 
