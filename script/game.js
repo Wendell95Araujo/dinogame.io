@@ -663,12 +663,12 @@ function playGame() {
     }
 
     function playErro() {
-        audioErro.volume = 0.2;
+        audioErro.volume = 0.5;
         audioErro.play();
     }
 
     function playPonto() {
-        audioPonto.volume = 0.1;
+        audioPonto.volume = 0.2;
         audioPonto.play();
     }
     
