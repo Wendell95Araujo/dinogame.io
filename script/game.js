@@ -481,7 +481,7 @@ function playGame() {
 
     function jump() {
         if (isJumping) return;
-        playJump();
+        playPulo();
         isJumping = true;
         let bottom = 0;
         let jumpInterval = setInterval(() => {
