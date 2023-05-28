@@ -34,6 +34,7 @@ var audioTrilha = document.querySelector('#music');
 var audioAplauso = document.querySelector('#recordeAudio');
 var audioErro = document.querySelector('#error');
 var audioPonto = document.querySelector('#ponto');
+var audioJump = document.querySelector('#jump');
 
 var selectMusic = 1;
 var selectTheme = 0;
@@ -480,7 +481,7 @@ function playGame() {
 
     function jump() {
         if (isJumping) return;
-
+        playJump();
         isJumping = true;
         let bottom = 0;
         let jumpInterval = setInterval(() => {
@@ -677,6 +678,11 @@ function playGame() {
         $('#buttonA').css('display','none');
         audioPonto.volume = 0.1;
         audioPonto.play();
+    }
+    
+    function playPulo() {
+        audioJump.volume = 0.1;
+        audioJump.play();
     }
 
     function playerWalk() {
