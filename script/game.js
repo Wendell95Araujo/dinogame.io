@@ -675,6 +675,7 @@ function playGame() {
     function playPulo() {
         $('#maneteON').css('display','none');
         $('#buttonA').css('display','none');
+        audioJump.volume = 0.5;
         audioJump.play();
     }
 
