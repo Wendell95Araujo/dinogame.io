@@ -616,32 +616,26 @@ function playGame() {
         } else if (playerRect.left > obstacleRect.left && !obstacle.classList.contains('passed')) {
             obstacle.classList.add('passed');
             score = score + 100;
-            playPonto();
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle2Rect.left && !obstacle2.classList.contains('passed')) {
             obstacle2.classList.add('passed');
             score = score + 100;
-            playPonto();
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle3Rect.left && !obstacle3.classList.contains('passed')) {
             obstacle3.classList.add('passed');
             score = score + 100;
-            playPonto();
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle4Rect.left && !obstacle4.classList.contains('passed')) {
             obstacle4.classList.add('passed');
             score = score + 100;
-            playPonto();
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle5Rect.left && !obstacle5.classList.contains('passed')) {
             obstacle5.classList.add('passed');
             score = score + 100;
-            playPonto();
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle6Rect.left && !obstacle6.classList.contains('passed')) {
             obstacle6.classList.add('passed');
             score = score + 100;
-            playPonto();
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } 
     }
@@ -681,7 +675,6 @@ function playGame() {
     }
     
     function playPulo() {
-        audioJump.volume = 0.5;
         audioJump.play();
     }
 
@@ -754,6 +747,11 @@ function playGame() {
             pulo = 20;
             
         }
+        
+        if (parseInt(score /10) % 1000 === 0) {
+            playPonto();
+        }
+        
         obstacleLeft -= speed;
         obstacle.style.left = obstacleLeft + 'px';
         obstacle2Left -= speed;
