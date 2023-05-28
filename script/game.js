@@ -484,7 +484,7 @@ function playGame() {
         isJumping = true;
         let bottom = 0;
         let jumpInterval = setInterval(() => {
-            if (bottom >= 150) {
+            if (bottom >= 120) {
                 clearInterval(jumpInterval);
                 let fallInterval = setInterval(() => {
                     if (bottom <= 0) {
