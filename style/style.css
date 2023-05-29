@@ -18,6 +18,7 @@ html::-webkit-scrollbar {
 
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: black;
 }
 
 /*Loading*/
