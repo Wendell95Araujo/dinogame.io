@@ -35,6 +35,8 @@ var audioAplauso = document.querySelector('#recordeAudio');
 var audioErro = document.querySelector('#error');
 var audioPonto = document.querySelector('#ponto');
 var audioJump = document.querySelector('#jump');
+var audioWalk = document.querySelector('#walkSound');
+var audioImpact = document.querySelector('#impact');
 
 var selectMusic = 1;
 var selectTheme = 0;
@@ -502,6 +504,10 @@ function playGame() {
                         player.style.bottom = bottom + 'px';
                         player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
 
+                        if(bottom === 0) {
+                            audioImpact.play();
+                        }
+
                         checkCollision();
                     }
                 }, pulo);
@@ -648,6 +654,7 @@ function playGame() {
             audioTrilha.src = "audio/music" + selectMusic + ".mp3";
             audioTrilha.loop = true;
             if (inicio % 2 === 1 ||inicio === 1) {
+                audioTrilha.volume = 0.5;
                 audioTrilha.play();
             }
             })
@@ -662,7 +669,13 @@ function playGame() {
         audioTrilha.currentTime = 0;
     }
 
+    function stopWalk() {
+        audioWalk.pause();
+        audioWalk.currentTime = 0;
+    }
+
     function playErro() {
+        stopWalk();
         audioErro.volume = 0.5;
         audioErro.play();
     }
@@ -673,9 +686,10 @@ function playGame() {
     }
     
     function playPulo() {
+        stopWalk()
         $('#maneteON').css('display','none');
         $('#buttonA').css('display','none');
-        audioJump.volume = 0.5;
+        audioJump.volume = 0.2;
         audioJump.play();
     }
 
@@ -684,6 +698,8 @@ function playGame() {
         playerDinoWalk.style.display = 'block';
         playerDinoJump.style.display = 'none';
         playerDinoDown.style.display = 'none';
+        audioWalk.loop = true;
+        audioWalk.play();
     }
 
     function playerUp() {
@@ -701,6 +717,7 @@ function playGame() {
     }
 
     function playerPause() {
+        stopWalk();
         playerDino.style.display = 'block';
         playerDinoWalk.style.display = 'none';
         playerDinoJump.style.display = 'none';
@@ -749,9 +766,15 @@ function playGame() {
             
         }
         
-        if (parseInt(score /10) % 1000 === 0) {
-            playPonto();
+        if (parseInt(score /10) !== 0) {
+
+            if (parseInt(score /10) % 1000 === 0) {
+
+                playPonto();
+
+            }
         }
+        
         
         obstacleLeft -= speed;
         obstacle.style.left = obstacleLeft + 'px';
