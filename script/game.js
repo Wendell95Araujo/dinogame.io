@@ -676,7 +676,7 @@ function playGame() {
 
     function playErro() {
         stopWalk();
-        audioErro.volume = 0.5;
+        audioErro.volume = 0.2;
         audioErro.play();
     }
 
