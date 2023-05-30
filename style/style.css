@@ -262,6 +262,28 @@ body {
 
 /*-------------------------*/
 
+/*Configurações de áudio*/
+
+#settings {
+    position: absolute;
+    left: 500px;
+    top: 20px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.2;
+}
+
+#settings:hover {
+    opacity: 1;
+}
+
+fieldset {
+    border: solid 1px;
+    padding: 10px;
+}
+
+/*-------------------------*/
+
 /*Fundo branco*/
 
 #fundoBranco {
@@ -525,5 +547,12 @@ body {
 
     .historic, .maxPont {
         margin: 10px auto 0;
+    }
+
+    #settings {
+        left: 200px;
+        top: 50px;
+        width: 200px;
+        height: 200px;
     }
 }

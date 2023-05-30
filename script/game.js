@@ -3,6 +3,7 @@ function loading(){
     lerStorage();
     $('#load').css('display','none');
     window.scrollTo(0,0);
+    audioSet();
     Controller.search();
 }
 
@@ -26,9 +27,16 @@ var nuvens = document.querySelector('.nuvem');
 var solLua = document.getElementById('solLua');
 var gameDiv = document.getElementById('game');
 var pontoDiv = document.getElementById('Pontuacao');
+var settingsDiv = document.getElementById('settings');
 var botaoN = document.querySelector('#btnN');
 var botaoS = document.querySelector('#btnS');
 var fundoBranco = document.querySelector('#fundoBranco');
+
+var musicOnOff = document.getElementById('musicOnOff');
+var effectOnOff = document.getElementById('effectOnOff');
+
+var musicOn = true;
+var effectOn = true;
 
 var audioTrilha = document.querySelector('#music');
 var audioAplauso = document.querySelector('#recordeAudio');
@@ -290,6 +298,7 @@ gameDiv.addEventListener('click', (event) => {
             }
         }
      }
+     $('#settings').css('opacity','0.2');
  });
 
 pontoDiv.addEventListener('click', (event) => {
@@ -300,6 +309,11 @@ pontoDiv.addEventListener('click', (event) => {
             }
         }
      }
+     $('#settings').css('opacity','0.2');
+ });
+
+settingsDiv.addEventListener('click', (event) => {
+     $('#settings').css('opacity','1');
  });
 
 fundoBranco.addEventListener('click', (event) => {
@@ -310,6 +324,7 @@ fundoBranco.addEventListener('click', (event) => {
             }
         }
      }
+     $('#settings').css('opacity','0.2');
  });
 
 botaoN.addEventListener('click', (event) => {
@@ -319,6 +334,133 @@ botaoN.addEventListener('click', (event) => {
 botaoS.addEventListener('click', (event) => {
     playGame();
  });
+
+
+function audioSet() {
+    var musicCookie = getCookie('music');
+    var effectCookie = getCookie('effect');
+
+    if (musicCookie != '') {
+
+        musicOn = musicCookie;
+
+        if (musicOn = true) {
+            musicOnOff.checked = true;
+            setCookie('music', 'true');
+        } else {
+            musicOnOff.checked = false;
+            setCookie('music', 'false');
+        }
+        
+    } else {
+        musicOnOff.checked = true
+        musicOn = true;
+        setCookie('music', 'true');
+    }
+
+    if (effectCookie != '') {
+
+        effectOn = effectCookie;
+
+        if (effectOn = true) {
+            effectOnOff.checked = true
+            setCookie('effect', 'true');
+        } else {
+            effectOnOff.checked = false
+            setCookie('effect', 'false');
+        }
+
+    } else {
+        effectOnOff.checked = true
+        effectOn = true;
+        setCookie('effect', 'true');
+    }
+}
+
+musicOnOff.addEventListener('change', (event) => {
+    if (musicOnOff.checked) {
+        musicOn = true;
+        setCookie('music', 'true');
+    } else {
+        musicOn = false;
+        setCookie('music', 'false');
+        stopTrilha();
+    }
+});
+
+effectOnOff.addEventListener('change', (event) => {
+    if (effectOnOff.checked) {
+        effectOn = true;
+        setCookie('effect', 'true');
+        playWalk();
+    } else {
+        effectOn = false;
+        setCookie('effect', 'false');
+        stopWalk();
+    }
+});
+
+function playTrilha() {
+    var playPromise = audioTrilha.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            audioTrilha.src = "audio/music" + selectMusic + ".mp3";
+            audioTrilha.loop = true;
+            if (musicOn == true) {
+                if (inicio % 2 === 1 ||inicio === 1) {
+                    audioTrilha.volume = 0.5;
+                    audioTrilha.play();
+                }
+            }
+        })
+        .catch(error => {
+        
+        });
+    }
+}
+
+function stopTrilha() {
+    audioTrilha.pause();
+    audioTrilha.currentTime = 0;
+}
+
+function playWalk() {
+    audioWalk.loop = true;
+    if (effectOn == true) {
+        audioWalk.play();
+    }
+}
+
+function stopWalk() {
+    audioWalk.pause();
+    audioWalk.currentTime = 0;
+}
+
+function playErro() {
+    stopWalk();
+    if (effectOn == true) {
+        audioErro.volume = 0.2;
+        audioErro.play();
+    }
+}
+
+function playPonto() {
+    if (effectOn == true) {
+        audioPonto.volume = 0.2;
+        audioPonto.play();
+    }
+}
+
+function playPulo() {
+    stopWalk()
+    $('#maneteON').css('display','none');
+    $('#buttonA').css('display','none');
+    if (effectOn == true) {
+        audioJump.volume = 0.2;
+        audioJump.play();
+    }
+}
 
 function playGame() {
 
@@ -431,6 +573,8 @@ function playGame() {
     recordNew = 0;
     speed = 5;
 
+    $('#settings').css('opacity','0.2');
+
     if (inicio > 3) {
         $('#textController').css('display','none');
     }
@@ -505,7 +649,9 @@ function playGame() {
                         player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
 
                         if(bottom === 0) {
-                            audioImpact.play();
+                            if (effectOn == true) {
+                                audioImpact.play();
+                            }
                         }
 
                         checkCollision();
@@ -646,60 +792,12 @@ function playGame() {
         } 
     }
 
-    function playTrilha() {
-        var playPromise = audioTrilha.play();
- 
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-            audioTrilha.src = "audio/music" + selectMusic + ".mp3";
-            audioTrilha.loop = true;
-            if (inicio % 2 === 1 ||inicio === 1) {
-                audioTrilha.volume = 0.5;
-                audioTrilha.play();
-            }
-            })
-            .catch(error => {
-            
-            });
-        }
-    }
-
-    function stopTrilha() {
-        audioTrilha.pause();
-        audioTrilha.currentTime = 0;
-    }
-
-    function stopWalk() {
-        audioWalk.pause();
-        audioWalk.currentTime = 0;
-    }
-
-    function playErro() {
-        stopWalk();
-        audioErro.volume = 0.2;
-        audioErro.play();
-    }
-
-    function playPonto() {
-        audioPonto.volume = 0.2;
-        audioPonto.play();
-    }
-    
-    function playPulo() {
-        stopWalk()
-        $('#maneteON').css('display','none');
-        $('#buttonA').css('display','none');
-        audioJump.volume = 0.2;
-        audioJump.play();
-    }
-
     function playerWalk() {
         playerDino.style.display = 'none';
         playerDinoWalk.style.display = 'block';
         playerDinoJump.style.display = 'none';
         playerDinoDown.style.display = 'none';
-        audioWalk.loop = true;
-        audioWalk.play();
+        playWalk();
     }
 
     function playerUp() {
