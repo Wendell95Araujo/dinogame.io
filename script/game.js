@@ -82,8 +82,6 @@ function loading(){
 function novoGame() {
     setTimeout(function() {
         $('#subtituloLoadIndex').text('Tudo pronto. Pode fechar esta janela. Para iniciar um novo jogo recarregue a página.')
-        $('#altura').text(screen.height)
-        $('#largura').text(screen.width)
         $("#load4").attr('src', 'img/dino.png')
     openGame();
 }, 3000)
