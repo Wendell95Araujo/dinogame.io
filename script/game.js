@@ -35,8 +35,8 @@ var fundoBranco = document.querySelector('#fundoBranco');
 var musicOnOff = document.getElementById('musicOnOff');
 var effectOnOff = document.getElementById('effectOnOff');
 
-var musicOn = true;
-var effectOn = true;
+var musicOn = 0;
+var effectOn = 0;
 
 var audioTrilha = document.querySelector('#music');
 var audioAplauso = document.querySelector('#recordeAudio');
@@ -61,6 +61,9 @@ var historic3 = localStorage.getItem(3);
 var historicMax = localStorage.getItem(10);
 var historicMax2 = localStorage.getItem(11);
 var historicMax3 = localStorage.getItem(12);
+
+var musicLocal = localStorage.getItem('music');
+var effectLocal = localStorage.getItem('effect');
 
 var count = 0;
 var recordNew = 0;
@@ -130,6 +133,7 @@ function lerStorage() {
         pontoMax3.textContent = todosMax3[0];
         pontoMaxName3.textContent = todosMax3[1];
     }
+
 }
 
 function salvaStorage() {
@@ -268,6 +272,7 @@ document.addEventListener('keydown', (event) => {
             if (count === 0) {
                 if (inicio % 2 === 0 || inicio == 0) {
                     playGame();
+                    $('#settings').css('opacity','0.2');
                 }
             }
         }
@@ -337,65 +342,65 @@ botaoS.addEventListener('click', (event) => {
 
 
 function audioSet() {
-    var musicCookie = getCookie('music');
-    var effectCookie = getCookie('effect');
 
-    if (musicCookie != '') {
+    if (musicLocal) {
 
-        musicOn = musicCookie;
+        musicOn = musicLocal
 
-        if (musicOn = true) {
+        if (musicOn == 0) {
             musicOnOff.checked = true;
-            setCookie('music', 'true');
         } else {
             musicOnOff.checked = false;
-            setCookie('music', 'false');
         }
         
     } else {
         musicOnOff.checked = true
-        musicOn = true;
-        setCookie('music', 'true');
+        musicOn = 0;
+        localStorage.setItem('music', musicOn)
     }
 
-    if (effectCookie != '') {
+    if (effectLocal) {
 
-        effectOn = effectCookie;
+        effectOn = effectLocal
 
-        if (effectOn = true) {
-            effectOnOff.checked = true
-            setCookie('effect', 'true');
+        if (effectOn == 0) {
+            effectOnOff.checked = true;
         } else {
-            effectOnOff.checked = false
-            setCookie('effect', 'false');
+            effectOnOff.checked = false;
         }
-
+        
     } else {
         effectOnOff.checked = true
-        effectOn = true;
-        setCookie('effect', 'true');
+        effectOn = 0;
+        localStorage.setItem('effect', effectOn)
     }
+
 }
 
 musicOnOff.addEventListener('change', (event) => {
     if (musicOnOff.checked) {
-        musicOn = true;
-        setCookie('music', 'true');
+        musicOn = 0;
+        localStorage.setItem('music', musicOn);
+        if (score > 0) {
+            playTrilha();
+        }
     } else {
-        musicOn = false;
-        setCookie('music', 'false');
+        musicOn = 1;
+        localStorage.setItem('music', musicOn);
         stopTrilha();
     }
 });
 
 effectOnOff.addEventListener('change', (event) => {
     if (effectOnOff.checked) {
-        effectOn = true;
-        setCookie('effect', 'true');
-        playWalk();
+        effectOn = 0;
+        localStorage.setItem('effect', effectOn);
+        if (score > 0) {
+            playWalk();
+        }
     } else {
-        effectOn = false;
-        setCookie('effect', 'false');
+        effectOn = 1;
+        localStorage.setItem('effect', effectOn);
         stopWalk();
     }
 });
@@ -407,7 +412,7 @@ function playTrilha() {
         playPromise.then(_ => {
             audioTrilha.src = "audio/music" + selectMusic + ".mp3";
             audioTrilha.loop = true;
-            if (musicOn == true) {
+            if (musicOn == 0) {
                 if (inicio % 2 === 1 ||inicio === 1) {
                     audioTrilha.volume = 0.5;
                     audioTrilha.play();
@@ -427,7 +432,7 @@ function stopTrilha() {
 
 function playWalk() {
     audioWalk.loop = true;
-    if (effectOn == true) {
+    if (effectOn == 0) {
         audioWalk.play();
     }
 }
@@ -439,14 +444,14 @@ function stopWalk() {
 
 function playErro() {
     stopWalk();
-    if (effectOn == true) {
+    if (effectOn == 0) {
         audioErro.volume = 0.2;
         audioErro.play();
     }
 }
 
 function playPonto() {
-    if (effectOn == true) {
+    if (effectOn == 0) {
         audioPonto.volume = 0.2;
         audioPonto.play();
     }
@@ -456,7 +461,7 @@ function playPulo() {
     stopWalk()
     $('#maneteON').css('display','none');
     $('#buttonA').css('display','none');
-    if (effectOn == true) {
+    if (effectOn == 0) {
         audioJump.volume = 0.2;
         audioJump.play();
     }
@@ -649,7 +654,7 @@ function playGame() {
                         player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
 
                         if(bottom === 0) {
-                            if (effectOn == true) {
+                            if (effectOn == 0) {
                                 audioImpact.play();
                             }
                         }
@@ -1046,6 +1051,7 @@ function playGame() {
                 if (count > 0) {
                     if (isGameOver !== true) {
                         jump();
+                        $('#settings').css('opacity','0.2');
                     }
                 }
             }
@@ -1090,6 +1096,7 @@ function playGame() {
                     if (count > 0) {
                         if (isGameOver !== true) {
                             jump();
+                            $('#settings').css('opacity','0.2');
                         }
                     }
                 }
