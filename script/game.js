@@ -247,6 +247,7 @@ function noiteTheme() {
     $('.chao').css('filter','brightness(0.5)');
     $('.cacto').css('filter','brightness(0.5)');
     $('#game').css('color','white');
+    $('#settings').css('color','white');
     solLua.src = "img/lua.png"
     $('.nuvem').css('display','none')
     $('.fundoEstrela').css('display','block')
@@ -258,6 +259,7 @@ function diaTheme() {
     $('.chao').css('filter','brightness(1.0)');
     $('.cacto').css('filter','brightness(1.0)');
     $('#game').css('color','black');
+    $('#settings').css('color','black');
     solLua.src = "img/sol.png"
     $('.nuvem').css('display','block')
     $('.fundoEstrela').css('display','none')
