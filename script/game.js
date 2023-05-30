@@ -1,12 +1,4 @@
 
-function loading(){
-    lerStorage();
-    $('#load').css('display','none');
-    window.scrollTo(0,0);
-    audioSet();
-    Controller.search();
-}
-
 var text = document.querySelector('#textButton');
 var playerDino = document.getElementById('player1');
 var playerDinoWalk = document.getElementById('playerWalk');
@@ -79,9 +71,19 @@ var myGame;
 
 var tema = 0;
 
+function loading(){
+    lerStorage();
+    $('#load').css('display','none');
+    window.scrollTo(0,0);
+    audioSet();
+    Controller.search();
+}
+
 function novoGame() {
     setTimeout(function() {
         $('#subtituloLoadIndex').text('Tudo pronto. Pode fechar esta janela. Para iniciar um novo jogo recarregue a página.')
+        $('#altura').text(screen.height)
+        $('#largura').text(screen.width)
         $("#load4").attr('src', 'img/dino.png')
     openGame();
 }, 3000)
