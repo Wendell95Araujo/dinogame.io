@@ -266,7 +266,7 @@ body {
 
 #settings {
     position: absolute;
-    left: 500px;
+    left: 800px;
     top: 20px;
     width: 200px;
     height: 200px;
@@ -498,6 +498,13 @@ fieldset {
 
     #textController {
         display: none;
+    }
+
+    #settings {
+        left: 400px;
+        top: 50px;
+        width: 200px;
+        height: 200px;
     }
 }
 
