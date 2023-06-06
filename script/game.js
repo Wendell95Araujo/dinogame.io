@@ -640,30 +640,32 @@ function playGame() {
         let jumpInterval = setInterval(() => {
             if (bottom >= 120) {
                 clearInterval(jumpInterval);
-                let fallInterval = setInterval(() => {
-                    if (bottom <= 0) {
-                        playerWalk();
-                        clearInterval(fallInterval);
-                        isJumping = false;
+                setTimeout(function(){ 
+                    let fallInterval = setInterval(() => {
+                        if (bottom <= 0) {
+                            playerWalk();
+                            clearInterval(fallInterval);
+                            isJumping = false;
 
-                    } else {
+                        } else {
 
-                        playerDown();
-                        bottom -= 8;
-                        playerSombraVer -=9;
-                        playerSombraTam -=0.5;
-                        player.style.bottom = bottom + 'px';
-                        player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
+                            playerDown();
+                            bottom -= 8;
+                            playerSombraVer -=9;
+                            playerSombraTam -=0.5;
+                            player.style.bottom = bottom + 'px';
+                            player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
 
-                        if(bottom === 0) {
-                            if (effectOn == 0) {
-                                audioImpact.play();
+                            if(bottom === 0) {
+                                if (effectOn == 0) {
+                                    audioImpact.play();
+                                }
                             }
-                        }
 
-                        checkCollision();
-                    }
-                }, pulo);
+                            checkCollision();
+                        }
+                    }, pulo);
+                }, 40);
             } else {
                 playerUp();
                 bottom += 8;
