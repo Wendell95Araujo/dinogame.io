@@ -1,20 +1,36 @@
-<h1>
+<h1 align="center">
   <a href="https://wendell95araujo.github.io/dinogame.io/"><img src="img/dino.gif" width="150px" alt="dino dancer"/></a>
   <p>Game Dino Dancer</p>
 </h1>
 
 <img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=plastic"/>
 
+# Índice 
+
+* [Índice](#índice)
+* [Descrição do Projeto](#-funcionalidades-do-projeto)
+* [Status do Projeto](#status-do-Projeto)
+* [Funcionalidades e Demonstração da Aplicação](#funcionalidades-e-demonstração-da-aplicação)
+* [Acesso ao Projeto](#acesso-ao-projeto)
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
+* [Pessoas Contribuidoras](#pessoas-contribuidoras)
+* [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras)
+* [Licença](#licença)
+* [Conclusão](#conclusão)
+
 <h2>🔨 Funcionalidades do projeto</h2>
 
-O projeto Dino Dancer é um jogo de plataforma em que você deve pular obstáculos. Foi criado totalmente em HTLM, CSS e JS. Recursos:
+O projeto Dino Game é um jogo de plataforma em que você deve pular obstáculos. A cada mil pontos a velocidade aumenta. A distância dos obstáculos é calculada automaticamente.
+Foi criado totalmente em HTLM, CSS e JS.
+<br><br>
+Principais recursos:
 
 - Suporte a controle;
 - Clima dinâminco;
 - Música aleatória;
 - Configuração de som (escolha o que deseja ouvir);
-- Placar de líderes;
 - Últimas pontuações;
+- Placar de líderes;
 - Armazenamento de dados no local Storage.
 
 
@@ -33,16 +49,17 @@ Para abrir e rodar o projeto, basta abrir o aquivo index.html no navegador.
 ▶️ Iniciar:
 - ``TECLADO`` (Seta para cima) <img src="img/tecla_Cima.png" width="30px" alt="Seta para cima"/>
 - ``CONTROLE`` (Botão START) <img src="img/button_Start.png" width="30px" alt="Botão START"/>
-
+<br><br>
 
 ↗️ Pulo:
 - ``TECLADO`` (Seta para cima) <img src="img/tecla_Cima.png" width="30px" alt="Seta para cima"/>
 - ``CONTROLE`` (Botão A) <img src="img/button_A.png" width="30px" alt="Botão A"/>
-
+<br><br>
 
 🔁 Recomeçar:
 - ``TECLADO`` (Tecla S) <img src="img/tecla_S.png" width="30px" alt="Tecla S"/>
 - ``CONTROLE`` (Botão A) <img src="img/button_A.png" width="30px" alt="Botão A"/>
+<br><br>
 
 ❎ Sair:
 - ``TECLADO`` (Tecla N) <img src="img/tecla_N.png" width="30px" alt="Tecla N"/>
