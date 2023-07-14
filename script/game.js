@@ -76,6 +76,7 @@ function loading(){
     $('#load').css('display','none');
     window.scrollTo(0,0);
     audioSet();
+    GetBrowserInfo()
     Controller.search();
 }
 
@@ -1170,4 +1171,32 @@ window.addEventListener('gc.button.press', function(event) {
     }
 }, false);
 
+function GetBrowserInfo() {
 
+    var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+   
+    var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+   
+    var isChrome = !!window.chrome && !isOpera;              // Chrome 1+
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;   // At least IE6
+    if (isOpera) {
+        return 1;
+    }
+    else if (isFirefox) {
+        return 2;
+    }
+    else if (isChrome) {
+        return 3;
+    }
+    else if (isSafari) {
+        return 4;
+        document.querySelector('body').style.zoom = 0
+    }
+    else if (isIE) {
+        return 5;
+    }
+    else {
+        return 0;
+    }
+  }
