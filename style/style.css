@@ -474,7 +474,7 @@ fieldset {
 @media screen and (max-width: 900px) {
 
     body {
-        /*zoom: 2;*/
+        zoom: 2;
         height: 100%;
     }
 
@@ -513,7 +513,7 @@ fieldset {
 @media screen and (max-width: 480px) {
 
     body {
-        /*zoom: 3;*/
+        zoom: 3;
         height: 100%;
     }
 
