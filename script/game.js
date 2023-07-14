@@ -1191,7 +1191,7 @@ function GetBrowserInfo() {
     }
     else if (isSafari) {
         return 4;
-        document.querySelector('body').style.zoom = 0
+        $('body').addClass("safari");
     }
     else if (isIE) {
         return 5;
