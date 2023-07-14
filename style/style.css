@@ -517,6 +517,10 @@ fieldset {
         height: 100%;
     }
 
+    .safari {
+        zoom: 1;
+    }
+
     #load2, #loadBorder {
         width: 80%;
     }
