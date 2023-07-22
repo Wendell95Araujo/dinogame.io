@@ -61,12 +61,15 @@ Para abrir e rodar o projeto, basta abrir o aquivo index.html no navegador.
 ❎ Sair:
 - ⌨️ (Tecla N) <img src="img/tecla_N.png" width="30px" alt="Tecla N"/>
 - 🎮 (Botão B) <img src="img/button_B.png" width="30px" alt="Botão B"/>
+<br><br>
 
 🔊 Ligar/Desligar Efeito de Som:
 - 🎮 (Botão Y) <img src="img/button_Y.png" width="30px" alt="Botão Y"/>
+<br><br>
 
 🎵 Ligar/Desligar Música:
 - 🎮 (Botão X) <img src="img/button_X.png" width="30px" alt="Botão X"/>
+<br><br>
 
 # ✔️ Técnicas e Tecnologias Utilizadas
 
