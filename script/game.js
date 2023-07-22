@@ -38,7 +38,7 @@ var audioJump = document.querySelector('#jump');
 var audioWalk = document.querySelector('#walkSound');
 var audioImpact = document.querySelector('#impact');
 
-var selectMusic = 1;
+var selectMusic = 3;
 var selectTheme = 0;
 var selectBG = 0;
 
@@ -76,7 +76,6 @@ function loading(){
     $('#load').css('display','none');
     window.scrollTo(0,0);
     audioSet();
-    GetBrowserInfo()
     Controller.search();
 }
 
@@ -90,7 +89,7 @@ function novoGame() {
 }
 
 function openGame() {
-    myGame = window.open("game", "_blank");
+    myGame = window.open("game.html", "_blank");
 }
   
 function closeGame() {
@@ -408,6 +407,58 @@ effectOnOff.addEventListener('change', (event) => {
     }
 });
 
+window.addEventListener('gc.button.press', function(event) {
+        var button = event.detail;
+        if (button.pressed) {
+            if (caixaRecorde.style.display === ''){
+                if (button.name == "FACE_3") {
+                    if (musicOnOff.checked) {
+                        $('#settings').css('opacity','1');
+                        musicOnOff.checked = false;
+                        musicOn = 1;
+                        localStorage.setItem('music', musicOn);
+                        stopTrilha();
+                        
+                    } else {
+                        $('#settings').css('opacity','1');
+                        musicOnOff.checked = true;
+                        musicOn = 0;
+                        localStorage.setItem('music', musicOn);
+                        if (score > 0) {
+                            playTrilha();
+                        }
+                    }
+                }
+            }
+        }
+    }, false);
+
+window.addEventListener('gc.button.press', function(event) {
+        var button = event.detail;
+        if (button.pressed) {
+            if (caixaRecorde.style.display === ''){
+                if (button.name == "FACE_4") {
+                    if (effectOnOff.checked) {
+                        $('#settings').css('opacity','1');
+                        effectOnOff.checked = false;
+                        effectOn = 1;
+                        localStorage.setItem('effect', effectOn);
+                        stopWalk();
+                    } else {
+                        $('#settings').css('opacity','1');
+                        effectOnOff.checked = true;
+                        effectOn = 0;
+                        localStorage.setItem('effect', effectOn);
+                        if (score > 0) {
+                            playWalk();
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }, false);
+
 function playTrilha() {
     var playPromise = audioTrilha.play();
 
@@ -417,7 +468,7 @@ function playTrilha() {
             audioTrilha.loop = true;
             if (musicOn == 0) {
                 if (inicio % 2 === 1 ||inicio === 1) {
-                    audioTrilha.volume = 0.5;
+                    //audioTrilha.volume = 0.8;
                     audioTrilha.play();
                 }
             }
@@ -436,6 +487,7 @@ function stopTrilha() {
 function playWalk() {
     audioWalk.loop = true;
     if (effectOn == 0) {
+        audioWalk.volume = 0.8;
         audioWalk.play();
     }
 }
@@ -641,32 +693,30 @@ function playGame() {
         let jumpInterval = setInterval(() => {
             if (bottom >= 120) {
                 clearInterval(jumpInterval);
-                setTimeout(function(){ 
-                    let fallInterval = setInterval(() => {
-                        if (bottom <= 0) {
-                            playerWalk();
-                            clearInterval(fallInterval);
-                            isJumping = false;
+                let fallInterval = setInterval(() => {
+                    if (bottom <= 0) {
+                        playerWalk();
+                        clearInterval(fallInterval);
+                        isJumping = false;
 
-                        } else {
+                    } else {
 
-                            playerDown();
-                            bottom -= 8;
-                            playerSombraVer -=9;
-                            playerSombraTam -=0.5;
-                            player.style.bottom = bottom + 'px';
-                            player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
+                        playerDown();
+                        bottom -= 8;
+                        playerSombraVer -=9;
+                        playerSombraTam -=0.5;
+                        player.style.bottom = bottom + 'px';
+                        player1.css('filter','drop-shadow(' + playerSombraHor + 'px ' + playerSombraVer +'px ' + playerSombraTam + 'px #000000)');
 
-                            if(bottom === 0) {
-                                if (effectOn == 0) {
-                                    audioImpact.play();
-                                }
+                        if(bottom === 0) {
+                            if (effectOn == 0) {
+                                audioImpact.play();
                             }
-
-                            checkCollision();
                         }
-                    }, pulo);
-                }, 40);
+
+                        checkCollision();
+                    }
+                }, pulo);
             } else {
                 playerUp();
                 bottom += 8;
@@ -1125,11 +1175,13 @@ window.addEventListener('gc.controller.found', function(event) {
         $('#imgPlay').css('display','none');
         $('#textController').css('display','none');
         $('#textButton1').css('display','none')
+        $('.audioEffectButton').css('display','inline-block');
     } else {
         $('.buttonsHelpPlay').css('display','block');
         $('#textButton').css('display','none');
         $('#imgPlay').css('display','none');
         $('#textController').css('display','none');
+        $('.audioEffectButton').css('display','inline-block');
     }
 }, false);
 
@@ -1171,32 +1223,3 @@ window.addEventListener('gc.button.press', function(event) {
     }
 }, false);
 
-function GetBrowserInfo() {
-
-    var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-   
-    var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
-    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-   
-    var isChrome = !!window.chrome && !isOpera;              // Chrome 1+
-    var isIE = /*@cc_on!@*/false || !!document.documentMode;   // At least IE6
-    if (isOpera) {
-        return 1;
-    }
-    else if (isFirefox) {
-        return 2;
-    }
-    else if (isChrome) {
-        return 3;
-    }
-    else if (isSafari) {
-        return 4;
-        $('body').addClass("safari");
-    }
-    else if (isIE) {
-        return 5;
-    }
-    else {
-        return 0;
-    }
-  }
