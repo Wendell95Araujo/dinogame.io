@@ -282,6 +282,10 @@ fieldset {
     padding: 10px;
 }
 
+.audioEffectButton {
+    display: none;
+}
+
 /*-------------------------*/
 
 /*Fundo branco*/
@@ -515,10 +519,6 @@ fieldset {
     body {
         zoom: 3;
         height: 100%;
-    }
-
-    .safari {
-        zoom: 1;
     }
 
     #load2, #loadBorder {
