@@ -64,10 +64,12 @@ Para abrir e rodar o projeto, basta abrir o aquivo index.html no navegador.
 <br><br>
 
 🔊 Ligar/Desligar Efeito de Som:
+- ⌨️ (Clicar no Checkbox) ✅
 - 🎮 (Botão Y) <img src="img/button_Y.png" width="30px" alt="Botão Y"/>
 <br><br>
 
 🎵 Ligar/Desligar Música:
+- ⌨️ (Clicar no Checkbox) ✅
 - 🎮 (Botão X) <img src="img/button_X.png" width="30px" alt="Botão X"/>
 <br><br>
 
