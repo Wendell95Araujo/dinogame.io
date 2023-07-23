@@ -927,15 +927,17 @@ function playGame() {
         
         if (parseInt(score /10) !== 0) {
 
-            if (parseInt(score /10) % 1000 === 0) {
-
-                playPonto();
-                if (tema == 1) {
+            if (parseInt(score /10) % 500 === 0) {
+                if (tema === 1) {
                     diaTheme();
                  } else {
                     noiteTheme();
-                 }
+                }
+            }
 
+            if (parseInt(score /10) % 1000 === 0) {
+
+                playPonto();
             }
         }
         
