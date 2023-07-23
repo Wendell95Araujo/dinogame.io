@@ -930,7 +930,7 @@ function playGame() {
             if (parseInt(score /10) % 1000 === 0) {
 
                 playPonto();
-                if (selectTheme == 0) {
+                if (tema == 0) {
                     noiteTheme();
                 } else {
                     diaTheme();
