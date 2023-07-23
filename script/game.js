@@ -70,6 +70,7 @@ var conexao = 0;
 var myGame;
 
 var tema = 0;
+var temaDinamico = 0;
 
 function loading(){
     lerStorage();
@@ -929,9 +930,17 @@ function playGame() {
 
             if (parseInt(score /10) % 1000 === 0) {
                 if (tema !== 0) {
-                    diaTheme();
+                    temaDinamico++
+                    if (temaDinamico >= 2) {
+                        diaTheme();
+                        temaDinamico = 0;
+                    }
                  } else {
-                    noiteTheme();
+                    temaDinamico++
+                    if (temaDinamico >= 2) {
+                        noiteTheme();
+                        temaDinamico = 0;
+                    }
                 }
 
                 playPonto();
