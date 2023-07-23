@@ -931,13 +931,13 @@ function playGame() {
             if (parseInt(score /10) % 1000 === 0) {
                 if (tema !== 0) {
                     temaDinamico++
-                    if (temaDinamico >= 2) {
+                    if (temaDinamico > 0) {
                         diaTheme();
                         temaDinamico = 0;
                     }
                  } else {
                     temaDinamico++
-                    if (temaDinamico >= 2) {
+                    if (temaDinamico > 0) {
                         noiteTheme();
                         temaDinamico = 0;
                     }
