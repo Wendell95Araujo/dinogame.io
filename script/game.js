@@ -38,7 +38,7 @@ var audioJump = document.querySelector('#jump');
 var audioWalk = document.querySelector('#walkSound');
 var audioImpact = document.querySelector('#impact');
 
-var selectMusic = 3;
+var selectMusic = 1;
 var selectTheme = 0;
 var selectBG = 0;
 
@@ -891,6 +891,7 @@ function playGame() {
             
             speed = 10;
             pulo = 10;
+            
 
         } else if (parseInt(score /10) > 5000) {
             
@@ -929,6 +930,11 @@ function playGame() {
             if (parseInt(score /10) % 1000 === 0) {
 
                 playPonto();
+                if (selectTheme == 0) {
+                    noiteTheme();
+                } else {
+                    diaTheme();
+                }
 
             }
         }
