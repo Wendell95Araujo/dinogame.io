@@ -4,7 +4,9 @@
 </h1>
 
 <img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=plastic"/>
-
+<br><br>
+ <a href="https://wendell95araujo.github.io/dinogame.io/"><img src="img/gameDemo.gif" width="90%" alt="dino dancer"/></a>
+<br><br>
 # 📘 Índice 
 
 * [Índice](#-índice)
