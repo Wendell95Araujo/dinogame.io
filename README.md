@@ -1,7 +1,7 @@
 <h1 align="center">
   <a href="https://wendell95araujo.github.io/dinogame.io/"><img src="img/dino.gif" width="100px" alt="dino dancer"/></a>
   <p>Game Dino Dancer</p>
-  <img src="img/gameDemo.gif" width="100%" alt="dino dancer"/>
+  <a href="video/gameDemo.mp4"><img src="img/gameDemo.gif" width="100%" alt="dino dancer"/></a>
 </h1>
 
 <img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=plastic"/>
