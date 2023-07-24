@@ -510,6 +510,15 @@ function playPonto() {
     if (effectOn == 0) {
         audioPonto.volume = 0.2;
         audioPonto.play();
+        temaDinamico++
+        if (temaDinamico === 1) {
+            if (tema === 0) {
+                noiteTheme();
+            } else {
+                diaTheme();
+            }
+        }
+        
     }
 }
 
@@ -828,27 +837,21 @@ function playGame() {
 
         } else if (playerRect.left > obstacleRect.left && !obstacle.classList.contains('passed')) {
             obstacle.classList.add('passed');
-            score = score + 100;
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle2Rect.left && !obstacle2.classList.contains('passed')) {
             obstacle2.classList.add('passed');
-            score = score + 100;
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle3Rect.left && !obstacle3.classList.contains('passed')) {
             obstacle3.classList.add('passed');
-            score = score + 100;
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle4Rect.left && !obstacle4.classList.contains('passed')) {
             obstacle4.classList.add('passed');
-            score = score + 100;
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle5Rect.left && !obstacle5.classList.contains('passed')) {
             obstacle5.classList.add('passed');
-            score = score + 100;
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } else if (playerRect.left > obstacle6Rect.left && !obstacle6.classList.contains('passed')) {
             obstacle6.classList.add('passed');
-            score = score + 100;
             scoreDisplay.textContent = 'Pontuação: ' + parseInt(score /10);
         } 
     }
@@ -928,22 +931,16 @@ function playGame() {
         
         if (parseInt(score /10) !== 0) {
 
-            if (parseInt(score /10) % 1000 === 0) {
-                if (tema !== 0) {
-                    temaDinamico++
-                    if (temaDinamico > 0) {
-                        diaTheme();
-                        temaDinamico = 0;
-                    }
-                 } else {
-                    temaDinamico++
-                    if (temaDinamico > 0) {
-                        noiteTheme();
-                        temaDinamico = 0;
-                    }
-                }
+            if (parseInt(score /10) % 400 === 0) {
 
                 playPonto();
+
+            }
+
+            if (parseInt(score /10) % 413 === 0) {
+
+                temaDinamico = 0;
+
             }
         }
         
