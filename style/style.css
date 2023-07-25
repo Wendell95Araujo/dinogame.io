@@ -286,6 +286,10 @@ fieldset {
     display: none;
 }
 
+.audioEffectButtonKey {
+    display: inline-block;
+}
+
 /*-------------------------*/
 
 /*Fundo branco*/

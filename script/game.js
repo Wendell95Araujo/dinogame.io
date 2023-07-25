@@ -72,6 +72,8 @@ var myGame;
 var tema = 0;
 var temaDinamico = 0;
 
+var pauseGame = false
+
 function loading(){
     lerStorage();
     $('#load').css('display','none');
@@ -295,6 +297,43 @@ document.addEventListener('keydown', (event) => {
                 }
             }
         }
+
+        if (event.keyCode == '88') {
+            if (musicOnOff.checked) {
+                $('#settings').css('opacity','1');
+                musicOnOff.checked = false;
+                musicOn = 1;
+                localStorage.setItem('music', musicOn);
+                stopTrilha();
+                
+            } else {
+                $('#settings').css('opacity','1');
+                musicOnOff.checked = true;
+                musicOn = 0;
+                localStorage.setItem('music', musicOn);
+                if (pauseGame === false) {
+                    playTrilha();
+                } 
+            }
+        }
+        
+        if (event.keyCode == '90') {
+            if (effectOnOff.checked) {
+                $('#settings').css('opacity','1');
+                effectOnOff.checked = false;
+                effectOn = 1;
+                localStorage.setItem('effect', effectOn);
+                stopWalk();
+            } else {
+                $('#settings').css('opacity','1');
+                effectOnOff.checked = true;
+                effectOn = 0;
+                localStorage.setItem('effect', effectOn);
+                if (score > 0) {
+                    playWalk();
+                }
+            }
+        }
     }
 });
 
@@ -384,7 +423,7 @@ musicOnOff.addEventListener('change', (event) => {
     if (musicOnOff.checked) {
         musicOn = 0;
         localStorage.setItem('music', musicOn);
-        if (score > 0) {
+        if (score > 0 && pauseGame === false) {
             playTrilha();
         }
     } else {
@@ -488,8 +527,13 @@ function stopTrilha() {
 function playWalk() {
     audioWalk.loop = true;
     if (effectOn == 0) {
-        audioWalk.volume = 0.8;
-        audioWalk.play();
+        if (pauseGame === true) {
+            stopWalk();
+            playerPause();
+        } else {
+            audioWalk.volume = 0.8;
+            audioWalk.play();
+        }
     }
 }
 
@@ -642,6 +686,8 @@ function playGame() {
     score = 0;
     recordNew = 0;
     speed = 5;
+
+    pauseGame = false;
 
     $('#settings').css('opacity','0.2');
 
@@ -797,6 +843,8 @@ function playGame() {
 
             solOuLua.style.animationPlayState = 'paused';
 
+            pauseGame = true;
+
             playerPause();
             stopTrilha();
             if (controleConect) {
@@ -857,11 +905,16 @@ function playGame() {
     }
 
     function playerWalk() {
-        playerDino.style.display = 'none';
-        playerDinoWalk.style.display = 'block';
-        playerDinoJump.style.display = 'none';
-        playerDinoDown.style.display = 'none';
-        playWalk();
+        if (pauseGame === false) {
+            playerDino.style.display = 'none';
+            playerDinoWalk.style.display = 'block';
+            playerDinoJump.style.display = 'none';
+            playerDinoDown.style.display = 'none';
+            playWalk();  
+        } else {
+            playerPause();
+        }
+        
     }
 
     function playerUp() {
@@ -931,13 +984,13 @@ function playGame() {
         
         if (parseInt(score /10) !== 0) {
 
-            if (parseInt(score /10) % 400 === 0) {
+            if (parseInt(score /10) % 500 === 0) {
 
                 playPonto();
 
             }
 
-            if (parseInt(score /10) % 413 === 0) {
+            if (parseInt(score /10) % 501 === 0) {
 
                 temaDinamico = 0;
 
@@ -1187,12 +1240,14 @@ window.addEventListener('gc.controller.found', function(event) {
         $('#textController').css('display','none');
         $('#textButton1').css('display','none')
         $('.audioEffectButton').css('display','inline-block');
+        $('.audioEffectButtonKey').css('display','none');
     } else {
         $('.buttonsHelpPlay').css('display','block');
         $('#textButton').css('display','none');
         $('#imgPlay').css('display','none');
         $('#textController').css('display','none');
         $('.audioEffectButton').css('display','inline-block');
+        $('.audioEffectButtonKey').css('display','none');
     }
 }, false);
 

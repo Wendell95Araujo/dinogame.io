@@ -65,12 +65,12 @@ Para abrir e rodar o projeto, basta abrir o aquivo index.html no navegador.
 <br><br>
 
 🔊 Ligar/Desligar Efeito de Som:
-- ⌨️ (Clicar no Checkbox) ✅
+- ⌨️ (Clicar no Checkbox) ✅ ou (Tecla Z) <img src="img/tecla_Z.png" width="30px" alt="Tecla Z"/>
 - 🎮 (Botão Y) <img src="img/button_Y.png" width="30px" alt="Botão Y"/>
 <br><br>
 
 🎵 Ligar/Desligar Música:
-- ⌨️ (Clicar no Checkbox) ✅
+- ⌨️ (Clicar no Checkbox) ✅ ou (Tecla X) <img src="img/tecla_X.png" width="30px" alt="Tecla X"/>
 - 🎮 (Botão X) <img src="img/button_X.png" width="30px" alt="Botão X"/>
 <br><br>
 
