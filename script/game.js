@@ -990,7 +990,7 @@ function playGame() {
 
             }
 
-            if (parseInt(score /10) % 501 === 0) {
+            if (parseInt(score /10) % 507 === 0) {
 
                 temaDinamico = 0;
 
