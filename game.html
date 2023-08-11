@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Game Dino Dancer</title>
-    <link rel="shortcut icon" href="img/dino.gif">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style/reset.css">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="shortcut icon" href="img/dino.gif" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style/reset.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <script src="script/Controller.min.js"></script>
     <script src="script/Controller.layouts.min.js"></script>
-</head>
-<body onload="loading()">
+  </head>
+  <body onload="loading()">
     <audio class="musics" id="error" src="audio/erro.mp3"></audio>
     <audio class="musics" id="music" src="audio/music2.mp3"></audio>
     <audio class="musics" id="ponto" src="audio/ponto.mp3"></audio>
@@ -22,167 +25,252 @@
     <audio class="musics" id="impact" src="audio/impact.mp3"></audio>
     <audio class="musics" id="recordeAudio" src="audio/recorde.mp3"></audio>
     <div id="load">
-        <div id="loadBorder">
-            <img id="load2" alt="Dino" class="dinoLoad" src="img/dino.gif"/>
-            <p class="subtituloLoad" id="subtituloLoad">CARREGANDO...</p>
-        </div>
+      <div id="loadBorder">
+        <img id="load2" alt="Dino" class="dinoLoad" src="img/dino.gif" />
+        <p class="subtituloLoad" id="subtituloLoad">CARREGANDO...</p>
+      </div>
     </div>
     <div class="inputPontuador">
-        <div class="blocoPontuador">
-            <h1 class="titulo-ponto titulo-recorde">NOVO RECORDE!</h1>
-            <label for="pontuador" class="pontuadorLabel">Insira seu nome:</label>
-            <input type="text" name="pontuador" id="pontuadorInput" class="pontuadorInput" autocomplete="off">
-            <button class="pontuadorButton" id="pontuadorButton" required minlength="3" onclick="salvaNovoPontuador()">OK!</button>
-        </div>
+      <div class="blocoPontuador">
+        <h1 class="titulo-ponto titulo-recorde">NOVO RECORDE!</h1>
+        <label for="pontuador" class="pontuadorLabel">Insira seu nome:</label>
+        <input
+          type="text"
+          name="pontuador"
+          id="pontuadorInput"
+          class="pontuadorInput"
+          autocomplete="off"
+        />
+        <button
+          class="pontuadorButton"
+          id="pontuadorButton"
+          required
+          minlength="3"
+          onclick="salvaNovoPontuador()"
+        >
+          OK!
+        </button>
+      </div>
     </div>
     <div id="game">
-        <div id="fundoEstrela1">
-            <img class="fundoEstrela" id="fundoEstrela10" src="img/estrelas.jpg">
-        </div>
-        <div id="fundoEstrela2">
-            <img class="fundoEstrela" id="fundoEstrela20" src="img/estrelas.jpg">
-        </div>
-        <div id="sol" style="left: -70px;">
-            <img class="sol" id="solLua" src="img/sol.png">
-        </div>
-        <div id="chao1">
-            <img class="chao" id="chao10" src="img/fundo1.png">
-        </div>
-        <div id="chao2">
-            <img class="chao" id="chao20" src="img/fundo1.png">
-        </div>
-        <div id="nuvem1" style="left: 100px;">
-            <img class="nuvem" src="img/nuvem1.png">
-        </div>
-        <div id="nuvem2" style="left: 500px;">
-            <img class="nuvem" src="img/nuvem2.png">
-        </div>
-        <div id="nuvem3" style="left: 900px;">
-            <img class="nuvem" src="img/nuvem3.png">
-        </div>
-        <div id="nuvem4" style="left: 1200px;">
-            <img class="nuvem" src="img/nuvem4.webp">
-        </div>
-        <div id="nuvem5" style="left: 1450px;">
-            <img class="nuvem" src="img/nuvem5.webp">
-        </div>
-        <div id="nuvem6" style="left: 1800px;">
-            <img class="nuvem" src="img/nuvem2.png">
-        </div>
-        <div id="player" style="left: 30px;">
-            <img class="player" id="player1" src="img/dino.png">
-            <img class="player" id="playerWalk" src="img/dino.gif">
-            <img class="player" id="playerJump" src="img/dinoJump.png">
-            <img class="player" id="playerDown" src="img/dinoDown.png">
-        </div>
-        <div id="obstacle" style="left: 800px;">
-            <img class="obstacle cacto" src="img/cacto.png">
-        </div>
-        <div id="obstacle2" style="left: 900px;">
-            <img class="obstacle2 cacto" src="img/cacto3.png">
-        </div>
-        <div id="obstacle3" style="left: 1000px;">
-            <img class="obstacle3 cacto" src="img/cacto2.png">
-        </div>
-        <div id="obstacle4" style="left: 800px;">
-            <img class="obstacle4 cacto" src="img/cacto.png">
-        </div>
-        <div id="obstacle5" style="left: 900px;">
-            <img class="obstacle5 cacto" src="img/cacto3.png">
-        </div>
-        <div id="obstacle6" style="left: 1000px;">
-            <img class="obstacle6 cacto" src="img/cacto2.png">
-        </div>
-        <div class="botoes">
-            <p id="score">Pontuação: 0</p>
-            <p id="textController" class="textButton fade">Conecte um controle!</p>
-            <p id="textButton1" class="textButton fade">Tecle <img class="buttonMapTeclado" src="img/tecla_Cima.png" alt="tecla Cima">
-             ou clique na tela para começar.</p>
-            <p id="textButton2" class="textButton">Você perdeu! Tentar novamente?
-                <br><br>
-                <img class="buttonMapTeclado" id="btnS" src="img/tecla_S.png" alt="tecla S"> Sim
-                <br><br>
-                <img class="buttonMapTeclado" id="btnN" src="img/tecla_N.png" alt="tecla N"> Não, sair.</p>
-            <p id="maneteON" class="textButton buttonsHelp buttonsHelpPause buttonsHelpPlay">Controle conectado.</p>
-            <p id="maneteOff" class="textButton">Controle desconectado.</p>
-            <p id="maneteONPause" class="textButton buttonsHelp buttonsHelpPause fade">Aperte <img class="buttonMap" src="img/button_Start_2.png" alt="botão START"> para começar.</p>
-            <p id="maneteONPlay" class="textButton buttonStart">Você perdeu! Tentar novamente?
-                <br><br>
-                <img class="buttonMap" src="img/button_A.png" alt="botão A"> Sim
-                <br><br>
-                <img class="buttonMap" src="img/button_B.png" alt="botão B"> Não, sair.</p>
-            <p id="maneteONPlay2" class="textButton buttonStart">Aperte <img class="buttonMap" src="img/button_Start_2.png" alt="botão START"> para recomeçar.</p>
-            <p id="buttonA" class="textButton buttonsHelpA">Aperte <img class="buttonMap" src="img/button_A.png" alt="botão A"> para pular</p>
-        </div>
+      <div id="fundoEstrela1">
+        <img class="fundoEstrela" id="fundoEstrela10" src="img/estrelas.jpg" />
+      </div>
+      <div id="fundoEstrela2">
+        <img class="fundoEstrela" id="fundoEstrela20" src="img/estrelas.jpg" />
+      </div>
+      <div id="sol" style="left: -70px">
+        <img class="sol" id="solLua" src="img/sol.png" />
+      </div>
+      <div id="chao1">
+        <img class="chao" id="chao10" src="img/fundo1.png" />
+      </div>
+      <div id="chao2">
+        <img class="chao" id="chao20" src="img/fundo1.png" />
+      </div>
+      <div id="nuvem1" style="left: 100px">
+        <img class="nuvem" src="img/nuvem1.png" />
+      </div>
+      <div id="nuvem2" style="left: 500px">
+        <img class="nuvem" src="img/nuvem2.png" />
+      </div>
+      <div id="nuvem3" style="left: 900px">
+        <img class="nuvem" src="img/nuvem3.png" />
+      </div>
+      <div id="nuvem4" style="left: 1200px">
+        <img class="nuvem" src="img/nuvem4.webp" />
+      </div>
+      <div id="nuvem5" style="left: 1450px">
+        <img class="nuvem" src="img/nuvem5.webp" />
+      </div>
+      <div id="nuvem6" style="left: 1800px">
+        <img class="nuvem" src="img/nuvem2.png" />
+      </div>
+      <div id="player" style="left: 30px">
+        <img class="player" id="player1" src="img/dino.png" />
+        <img class="player" id="playerWalk" src="img/dino.gif" />
+        <img class="player" id="playerJump" src="img/dinoJump.png" />
+        <img class="player" id="playerDown" src="img/dinoDown.png" />
+      </div>
+      <div id="obstacle" style="left: 800px">
+        <img class="obstacle cacto" src="img/cacto.png" />
+      </div>
+      <div id="obstacle2" style="left: 900px">
+        <img class="obstacle2 cacto" src="img/cacto3.png" />
+      </div>
+      <div id="obstacle3" style="left: 1000px">
+        <img class="obstacle3 cacto" src="img/cacto2.png" />
+      </div>
+      <div id="obstacle4" style="left: 800px">
+        <img class="obstacle4 cacto" src="img/cacto.png" />
+      </div>
+      <div id="obstacle5" style="left: 900px">
+        <img class="obstacle5 cacto" src="img/cacto3.png" />
+      </div>
+      <div id="obstacle6" style="left: 1000px">
+        <img class="obstacle6 cacto" src="img/cacto2.png" />
+      </div>
+      <div class="botoes">
+        <p id="score">Pontuação: 0</p>
+        <p id="textController" class="textButton fade">Conecte um controle!</p>
+        <p id="textButton1" class="textButton fade">
+          Tecle
+          <img
+            class="buttonMapTeclado"
+            src="img/tecla_Cima.png"
+            alt="tecla Cima"
+          />
+          ou clique na tela para começar.
+        </p>
+        <p id="textButton2" class="textButton">
+          Você perdeu! Tentar novamente? <br /><br />
+          <img
+            class="buttonMapTeclado"
+            id="btnS"
+            src="img/tecla_S.png"
+            alt="tecla S"
+          />
+          Sim <br /><br />
+          <img
+            class="buttonMapTeclado"
+            id="btnN"
+            src="img/tecla_N.png"
+            alt="tecla N"
+          />
+          Não, sair.
+        </p>
+        <p
+          id="maneteON"
+          class="textButton buttonsHelp buttonsHelpPause buttonsHelpPlay"
+        >
+          Controle conectado.
+        </p>
+        <p id="maneteOff" class="textButton">Controle desconectado.</p>
+        <p
+          id="maneteONPause"
+          class="textButton buttonsHelp buttonsHelpPause fade"
+        >
+          Aperte
+          <img
+            class="buttonMap"
+            src="img/button_Start_2.png"
+            alt="botão START"
+          />
+          para começar.
+        </p>
+        <p id="maneteONPlay" class="textButton buttonStart">
+          Você perdeu! Tentar novamente? <br /><br />
+          <img class="buttonMap" src="img/button_A.png" alt="botão A" /> Sim
+          <br /><br />
+          <img class="buttonMap" src="img/button_B.png" alt="botão B" /> Não,
+          sair.
+        </p>
+        <p id="maneteONPlay2" class="textButton buttonStart">
+          Aperte
+          <img
+            class="buttonMap"
+            src="img/button_Start_2.png"
+            alt="botão START"
+          />
+          para recomeçar.
+        </p>
+        <p id="buttonA" class="textButton buttonsHelpA">
+          Aperte
+          <img class="buttonMap" src="img/button_A.png" alt="botão A" /> para
+          pular
+        </p>
+      </div>
     </div>
     <div id="settings">
-        <fieldset>
-            <legend>Configurações de áudio:</legend>
+      <fieldset>
+        <legend>Configurações de áudio:</legend>
 
-            <div>
-              <input type="checkbox" id="musicOnOff" name="musicOnOff">
-              <label for="musicOnOff">Música</label>
-              <img class="buttonMap audioEffectButton" src="img/button_X.png" alt="botão X">
-              <img class="buttonMap audioEffectButtonKey" src="img/tecla_X.png" alt="tecla X">
-            </div>
+        <div>
+          <input type="checkbox" id="musicOnOff" name="musicOnOff" />
+          <label for="musicOnOff">Música</label>
+          <img
+            class="buttonMap audioEffectButton"
+            src="img/button_X.png"
+            alt="botão X"
+          />
+          <img
+            class="buttonMap audioEffectButtonKey"
+            src="img/tecla_X.png"
+            alt="tecla X"
+          />
+        </div>
 
-            <div>
-              <input type="checkbox" id="effectOnOff" name="effectOnOff">
-              <label for="effectOnOff">Efeitos</label>
-              <img class="buttonMap audioEffectButton" src="img/button_Y.png" alt="botão Y">
-              <img class="buttonMap audioEffectButtonKey" src="img/tecla_Z.png" alt="tecla Z">
-            </div>
-        </fieldset>
+        <div>
+          <input type="checkbox" id="effectOnOff" name="effectOnOff" />
+          <label for="effectOnOff">Efeitos</label>
+          <img
+            class="buttonMap audioEffectButton"
+            src="img/button_Y.png"
+            alt="botão Y"
+          />
+          <img
+            class="buttonMap audioEffectButtonKey"
+            src="img/tecla_Z.png"
+            alt="tecla Z"
+          />
+        </div>
+      </fieldset>
     </div>
     <div id="fundoBranco">
-        <p id="info">Criado por Wendell Araújo</p>
+      <p id="info">Criado por Wendell Araújo</p>
     </div>
     <div id="Pontuacao">
-        <div class="maxPont">
-            <h1 class="titulo-ponto" unselectable="on">TOP 3:</h1>
-            <div class="linhaTabel">
-                <p class="pontuacoes name" unselectable="on">1º</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="pontoMaxName" unselectable="on">t-Rex</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="pontoMax" unselectable="on">2500</p>
-            </div>
-            <div class="linhaTabel">
-                <p class="pontuacoes name" unselectable="on">2º</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="pontoMaxName2" unselectable="on">velox</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="pontoMax2" unselectable="on">1000</p>
-            </div>
-            <div class="linhaTabel">
-                <p class="pontuacoes name" unselectable="on">3º</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="pontoMaxName3" unselectable="on">dino</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="pontoMax3" unselectable="on">500</p>
-            </div>
+      <div class="maxPont">
+        <h1 class="titulo-ponto" unselectable="on">TOP 3:</h1>
+        <div class="linhaTabel">
+          <p class="pontuacoes name" unselectable="on">1º</p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="pontoMaxName" unselectable="on">
+            t-Rex
+          </p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="pontoMax" unselectable="on">2500</p>
         </div>
-        <div class="historic">
-            <h1 class="titulo-ponto">Últimas pontuações:</h1>
-            <div class="linhaTabel">
-                <p class="pontuacoes name" unselectable="on">última</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="ponto3" unselectable="on"></p>
-            </div>
-            <div class="linhaTabel">
-                <p class="pontuacoes name" unselectable="on">penúltima</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="ponto2" unselectable="on"></p>
-            </div>
-            <div class="linhaTabel">
-                <p class="pontuacoes name" unselectable="on">antepenúltima</p>
-                <p class="pontuacoes name" unselectable="on">-</p>
-                <p class="pontuacoes name" id="ponto1" unselectable="on"></p>
-            </div>
+        <div class="linhaTabel">
+          <p class="pontuacoes name" unselectable="on">2º</p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="pontoMaxName2" unselectable="on">
+            velox
+          </p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="pontoMax2" unselectable="on">1000</p>
         </div>
+        <div class="linhaTabel">
+          <p class="pontuacoes name" unselectable="on">3º</p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="pontoMaxName3" unselectable="on">
+            dino
+          </p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="pontoMax3" unselectable="on">500</p>
+        </div>
+      </div>
+      <div class="historic">
+        <h1 class="titulo-ponto">Últimas pontuações:</h1>
+        <div class="linhaTabel">
+          <p class="pontuacoes name" unselectable="on">última</p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="ponto3" unselectable="on"></p>
+        </div>
+        <div class="linhaTabel">
+          <p class="pontuacoes name" unselectable="on">penúltima</p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="ponto2" unselectable="on"></p>
+        </div>
+        <div class="linhaTabel">
+          <p class="pontuacoes name" unselectable="on">antepenúltima</p>
+          <p class="pontuacoes name" unselectable="on">-</p>
+          <p class="pontuacoes name" id="ponto1" unselectable="on"></p>
+        </div>
+      </div>
     </div>
     <script src="script/cookie.js"></script>
+    <script src="script/jquery.js"></script>
     <script src="script/game.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</body>
+  </body>
 </html>
