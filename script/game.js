@@ -236,8 +236,8 @@ function noiteTheme() {
   $("#game").css("color", "white");
   $("#settings").css("color", "white");
   solLua.src = "img/lua.png";
-  $(".nuvem").css("display", "none");
-  $(".fundoEstrela").css("display", "block");
+  $(".nuvem").css("opacity", "0");
+  $(".fundoEstrela").css("opacity", "1");
   tema = 1;
 }
 
@@ -248,8 +248,8 @@ function diaTheme() {
   $("#game").css("color", "black");
   $("#settings").css("color", "black");
   solLua.src = "img/sol.png";
-  $(".nuvem").css("display", "block");
-  $(".fundoEstrela").css("display", "none");
+  $(".nuvem").css("opaccity", "1");
+  $(".fundoEstrela").css("opacity", "0");
   tema = 0;
 }
 
@@ -259,7 +259,6 @@ $(document).on("keydown", (event) => {
       if (count === 0) {
         if (inicio % 2 === 0 || inicio == 0) {
           playGame();
-          $("#settings").css("opacity", "0.2");
         }
       }
     }
@@ -282,13 +281,11 @@ $(document).on("keydown", (event) => {
 
     if (event.keyCode == "88") {
       if (musicOnOff.checked) {
-        $("#settings").css("opacity", "1");
         musicOnOff.checked = false;
         musicOn = 1;
         localStorage.setItem("music", musicOn);
         stopTrilha();
       } else {
-        $("#settings").css("opacity", "1");
         musicOnOff.checked = true;
         musicOn = 0;
         localStorage.setItem("music", musicOn);
@@ -300,13 +297,11 @@ $(document).on("keydown", (event) => {
 
     if (event.keyCode == "90") {
       if (effectOnOff.checked) {
-        $("#settings").css("opacity", "1");
         effectOnOff.checked = false;
         effectOn = 1;
         localStorage.setItem("effect", effectOn);
         stopWalk();
       } else {
-        $("#settings").css("opacity", "1");
         effectOnOff.checked = true;
         effectOn = 0;
         localStorage.setItem("effect", effectOn);
@@ -326,7 +321,6 @@ $("#game").on("click", (event) => {
       }
     }
   }
-  $("#settings").css("opacity", "0.2");
 });
 
 $("#pontuacao").on("click", (event) => {
@@ -337,11 +331,6 @@ $("#pontuacao").on("click", (event) => {
       }
     }
   }
-  $("#settings").css("opacity", "0.2");
-});
-
-$("#settings").on("click", (event) => {
-  $("#settings").css("opacity", "1");
 });
 
 $("#fundoBranco").on("click", (event) => {
@@ -352,7 +341,6 @@ $("#fundoBranco").on("click", (event) => {
       }
     }
   }
-  $("#settings").css("opacity", "0.2");
 });
 
 $("#btnN").on("click", (event) => {
@@ -429,13 +417,13 @@ $(window).on(
       if (caixaRecorde.style.display === "") {
         if (button.name == "FACE_3") {
           if (musicOnOff.checked) {
-            $("#settings").css("opacity", "1");
+  
             musicOnOff.checked = false;
             musicOn = 1;
             localStorage.setItem("music", musicOn);
             stopTrilha();
           } else {
-            $("#settings").css("opacity", "1");
+  
             musicOnOff.checked = true;
             musicOn = 0;
             localStorage.setItem("music", musicOn);
@@ -458,13 +446,13 @@ $(window).on(
       if (caixaRecorde.style.display === "") {
         if (button.name == "FACE_4") {
           if (effectOnOff.checked) {
-            $("#settings").css("opacity", "1");
+  
             effectOnOff.checked = false;
             effectOn = 1;
             localStorage.setItem("effect", effectOn);
             stopWalk();
           } else {
-            $("#settings").css("opacity", "1");
+  
             effectOnOff.checked = true;
             effectOn = 0;
             localStorage.setItem("effect", effectOn);
@@ -706,7 +694,6 @@ function playGame() {
 
   pauseGame = false;
 
-  $("#settings").css("opacity", "0.2");
 
   if (inicio > 3) {
     $("#textController").css("display", "none");
@@ -1186,7 +1173,7 @@ function playGame() {
         if (count > 0) {
           if (isGameOver !== true) {
             jump();
-            $("#settings").css("opacity", "0.2");
+        
           }
         }
       }
@@ -1233,7 +1220,7 @@ function playGame() {
             if (count > 0) {
               if (isGameOver !== true) {
                 jump();
-                $("#settings").css("opacity", "0.2");
+            
               }
             }
           }

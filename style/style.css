@@ -104,6 +104,7 @@ body {
   background-color: deepskyblue;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  transition: color 2s;
 }
 
 #sol,
@@ -127,7 +128,9 @@ body {
   bottom: 0;
 }
 .fundoEstrela {
-  display: none;
+  display: block;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
 #fundoEstrela1 {
@@ -244,6 +247,7 @@ body {
   height: 100px;
   position: absolute;
   filter: brightness(1.5);
+  transition: opacity 2s;
 }
 
 #nuvem1 {
@@ -286,11 +290,8 @@ body {
   top: 20px;
   width: 200px;
   height: 200px;
-  opacity: 0.2;
-}
-
-#settings:hover {
   opacity: 1;
+  transition: color 2s;
 }
 
 fieldset {
@@ -399,7 +400,7 @@ fieldset {
   position: fixed;
   right: 10px;
   top: 100px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .historic,
@@ -424,6 +425,7 @@ fieldset {
 .linhaTabel {
   display: block;
   text-align: justify;
+  color: black;
 }
 
 .pontuacoes {
