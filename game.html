@@ -46,14 +46,17 @@
     <div id="fundoEstrela2">
       <img class="fundoEstrela" id="fundoEstrela20" src="img/estrelas.jpg" />
     </div>
-    <div id="sol" style="left: -70px">
-      <img class="sol" id="solLua" src="img/sol.png" />
+    <div class="sol" style="left: -70px">
+      <img class="sol" id="sol" src="img/sol.png" />
+    </div>
+    <div class="lua" style="left: -70px">
+      <img class="lua" id="lua" src="img/lua.png" />
     </div>
     <div id="chao1">
-      <img class="chao" id="chao10" src="img/fundo1.png" />
+      <div class="chao" id="chao10"></div>
     </div>
     <div id="chao2">
-      <img class="chao" id="chao20" src="img/fundo1.png" />
+      <div class="chao" id="chao20"></div>
     </div>
     <div id="nuvem1" style="left: 100px">
       <img class="nuvem" src="img/nuvem1.png" />
@@ -96,23 +99,6 @@
     </div>
     <div id="obstacle6" style="left: 1000px">
       <img class="obstacle6 cacto" src="img/cacto2.png" />
-    </div>
-    <div id="settings">
-    <fieldset>
-      <legend>Configurações de áudio:</legend>
-      <div>
-        <input type="checkbox" id="musicOnOff" name="musicOnOff" />
-        <label for="musicOnOff">Música</label>
-        <img class="buttonMap audioEffectButton" src="img/button_X.png" alt="botão X" />
-        <img class="buttonMap audioEffectButtonKey" src="img/tecla_X.png" alt="tecla X" />
-      </div>
-      <div>
-        <input type="checkbox" id="effectOnOff" name="effectOnOff" />
-        <label for="effectOnOff">Efeitos</label>
-        <img class="buttonMap audioEffectButton" src="img/button_Y.png" alt="botão Y" />
-        <img class="buttonMap audioEffectButtonKey" src="img/tecla_Z.png" alt="tecla Z" />
-      </div>
-    </fieldset>
     </div>
     <div id="pontuacao">
       <div class="maxPont">
@@ -207,6 +193,23 @@
       </p>
     </div>
   </div>
+  <div id="settings">
+    <fieldset>
+      <legend>Configurações de áudio:</legend>
+      <div>
+        <input type="checkbox" id="musicOnOff" name="musicOnOff" />
+        <label for="musicOnOff">Música</label>
+        <img class="buttonMap audioEffectButton" src="img/button_X.png" alt="botão X" />
+        <img class="buttonMap audioEffectButtonKey" src="img/tecla_X.png" alt="tecla X" />
+      </div>
+      <div>
+        <input type="checkbox" id="effectOnOff" name="effectOnOff" />
+        <label for="effectOnOff">Efeitos</label>
+        <img class="buttonMap audioEffectButton" src="img/button_Y.png" alt="botão Y" />
+        <img class="buttonMap audioEffectButtonKey" src="img/tecla_Z.png" alt="tecla Z" />
+      </div>
+    </fieldset>
+    </div>
   <div id="fundoBranco">
     <p id="info">
       Dino Dancer Game<br>

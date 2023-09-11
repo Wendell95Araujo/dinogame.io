@@ -15,7 +15,7 @@ var pontoMaxName3 = document.querySelector("#pontoMaxName3");
 var caixaRecorde = document.querySelector(".inputPontuador");
 var nomePontuador = document.getElementById("pontuadorInput");
 var nuvens = document.querySelector(".nuvem");
-var solLua = document.getElementById("solLua");
+var solLua = document.querySelector(".sol");
 var gameDiv = document.getElementById("game");
 var pontoDiv = document.getElementById("Pontuacao");
 var settingsDiv = document.getElementById("settings");
@@ -70,6 +70,9 @@ var myGame;
 
 var tema = 0;
 var temaDinamico = 0;
+
+var imgUrl = "img/fundo";
+var imgType = ".png";
 
 var pauseGame = false;
 
@@ -235,9 +238,13 @@ function noiteTheme() {
   $(".cacto").css("filter", "brightness(0.5)");
   $("#game").css("color", "white");
   $("#settings").css("color", "white");
-  solLua.src = "img/lua.png";
-  $(".nuvem").css("opacity", "0");
+  $("#nuvem1").css("opacity", "0");
+  $("#nuvem3").css("opacity", "0");
+  $("#nuvem5").css("opacity", "0");
   $(".fundoEstrela").css("opacity", "1");
+  $(".lua").css("top", "0");
+  $(".sol").css("opacity", "0");
+  $(".sol").css("top", "500px");
   tema = 1;
 }
 
@@ -247,9 +254,13 @@ function diaTheme() {
   $(".cacto").css("filter", "brightness(1.0)");
   $("#game").css("color", "black");
   $("#settings").css("color", "black");
-  solLua.src = "img/sol.png";
-  $(".nuvem").css("opaccity", "1");
+  $("#nuvem1").css("opacity", "1");
+  $("#nuvem3").css("opacity", "1");
+  $("#nuvem5").css("opacity", "1");
   $(".fundoEstrela").css("opacity", "0");
+  $(".lua").css("top", "-150px");
+  $(".sol").css("opacity", "1");
+  $(".sol").css("top", "-50px");
   tema = 0;
 }
 
@@ -417,13 +428,11 @@ $(window).on(
       if (caixaRecorde.style.display === "") {
         if (button.name == "FACE_3") {
           if (musicOnOff.checked) {
-  
             musicOnOff.checked = false;
             musicOn = 1;
             localStorage.setItem("music", musicOn);
             stopTrilha();
           } else {
-  
             musicOnOff.checked = true;
             musicOn = 0;
             localStorage.setItem("music", musicOn);
@@ -446,13 +455,11 @@ $(window).on(
       if (caixaRecorde.style.display === "") {
         if (button.name == "FACE_4") {
           if (effectOnOff.checked) {
-  
             effectOnOff.checked = false;
             effectOn = 1;
             localStorage.setItem("effect", effectOn);
             stopWalk();
           } else {
-  
             effectOnOff.checked = true;
             effectOn = 0;
             localStorage.setItem("effect", effectOn);
@@ -534,8 +541,8 @@ function playPonto() {
 
 function playPulo() {
   stopWalk();
-  $("#maneteON").css("display", "none");
-  $("#buttonA").css("display", "none");
+  $("#maneteON").css("opacity", "0");
+  $("#buttonA").css("opacity", "0");
   if (effectOn == 0) {
     audioJump.volume = 0.2;
     audioJump.play();
@@ -574,7 +581,8 @@ function playGame() {
   const fundoEstrela1 = document.getElementById("fundoEstrela1");
   const fundoEstrela2 = document.getElementById("fundoEstrela2");
 
-  const solOuLua = document.getElementById("solLua");
+  const sol = document.querySelector(".sol");
+  const lua = document.querySelector(".lua");
 
   let gameArea = document.getElementById("game");
   let scoreDisplay = document.getElementById("score");
@@ -626,10 +634,7 @@ function playGame() {
   );
 
   let solWidth = parseInt(
-    window.getComputedStyle(solOuLua).getPropertyValue("width")
-  );
-  let SolHeight = parseInt(
-    window.getComputedStyle(solOuLua).getPropertyValue("height")
+    window.getComputedStyle(sol).getPropertyValue("width")
   );
 
   let obstacleLeft = gameAreaWidth + 20;
@@ -694,21 +699,20 @@ function playGame() {
 
   pauseGame = false;
 
-
   if (inicio > 3) {
-    $("#textController").css("display", "none");
+    $("#textController").css("opacity", "0");
   }
 
-  $("#textButton1").css("display", "none");
-  $("#pontuacao").css("display", "none");
+  $("#textButton1").css("opacity", "0");
+  $("#pontuacao").css("opacity", "0");
 
   if (conexao === 1) {
-    $("#buttonA").css("display", "block");
+    $("#buttonA").css("opacity", "1");
     conexao++;
   }
 
-  $(".buttonsHelp").css("display", "none");
-  $(".buttonStart").css("display", "none");
+  $(".buttonsHelp").css("opacity", "0");
+  $(".buttonStart").css("opacity", "0");
 
   if (inicio % 2 === 0) {
     selectTheme = parseInt(Math.random() * 21);
@@ -720,10 +724,11 @@ function playGame() {
       noiteTheme();
     }
 
-    $(".chao").attr("src", "img/fundo" + selectBG + ".png");
-    if (inicio % 4 === 0) {
-      selectMusic = parseInt(Math.random() * 4 + 1);
-    }
+    $(".chao").css(
+      "background-image",
+      "url(" + imgUrl + selectBG + imgType + ")"
+    );
+    selectMusic = parseInt(Math.random() * 4 + 1);
   }
 
   playerWalk();
@@ -849,7 +854,8 @@ function playGame() {
       chao1.style.animationPlayState = "paused";
       chao2.style.animationPlayState = "paused";
 
-      solOuLua.style.animationPlayState = "paused";
+      sol.style.animationPlayState = "paused";
+      lua.style.animationPlayState = "paused";
 
       pauseGame = true;
 
@@ -857,22 +863,22 @@ function playGame() {
       stopTrilha();
       if (controleConect) {
         if (inicio % 2 === 0) {
-          $("#maneteONPlay2").css("display", "block");
+          $("#maneteONPlay2").css("opacity", "1");
         }
         if (inicio % 2 === 1) {
-          $("#maneteONPlay").css("display", "block");
+          $("#maneteONPlay").css("opacity", "1");
         }
-        $("#maneteOff").css("display", "none");
+        $("#maneteOff").css("opacity", "0");
       } else {
         if (inicio % 2 === 1) {
-          $("#textButton1").css("display", "none");
-          $("#pontuacao").css("display", "block");
-          $("#textButton2").css("display", "block");
+          $("#textButton1").css("opacity", "0");
+          $("#pontuacao").css("opacity", "0.8");
+          $("#textButton2").css("opacity", "1");
         }
         if (inicio % 2 === 0) {
-          $("#textButton1").css("display", "block");
-          $("#pontuacao").css("display", "block");
-          $("#textButton2").css("display", "none");
+          $("#textButton1").css("opacity", "1");
+          $("#pontuacao").css("opacity", "0.8");
+          $("#textButton2").css("opacity", "0");
         }
       }
 
@@ -995,6 +1001,16 @@ function playGame() {
         playPonto();
       }
 
+      if (parseInt(score / 10) % 1000 === 0) {
+        if (temaDinamico === 1) {
+          selectBG = parseInt(Math.random() * 4);
+          $(".chao").css(
+            "background-image",
+            "url(" + imgUrl + selectBG + imgType + ")"
+          );
+        }
+      }
+
       if (parseInt(score / 10) % 507 === 0) {
         temaDinamico = 0;
       }
@@ -1037,7 +1053,8 @@ function playGame() {
     fundoEstrela2.style.left = fundoEstrela2Left + "px";
 
     solLuaLeft -= 0.2;
-    solOuLua.style.left = solLuaLeft + "px";
+    sol.style.left = solLuaLeft + "px";
+    lua.style.left = solLuaLeft + "px";
 
     centroSol = solLuaLeft + solWidth / 2;
 
@@ -1173,7 +1190,6 @@ function playGame() {
         if (count > 0) {
           if (isGameOver !== true) {
             jump();
-        
           }
         }
       }
@@ -1220,7 +1236,6 @@ function playGame() {
             if (count > 0) {
               if (isGameOver !== true) {
                 jump();
-            
               }
             }
           }
@@ -1243,20 +1258,20 @@ $(window).on(
     conexao++;
     $("#maneteON").text("'" + controller.name + "' conectado!");
     if (count === 0) {
-      $(".buttonsHelpPause").css("display", "block");
-      $("#textButton").css("display", "none");
-      $("#imgPlay").css("display", "none");
-      $("#textController").css("display", "none");
-      $("#textButton1").css("display", "none");
+      $(".buttonsHelpPause").css("opacity", "1");
+      $("#textButton").css("opacity", "0");
+      $("#imgPlay").css("opacity", "0");
+      $("#textController").css("opacity", "0");
+      $("#textButton1").css("opacity", "0");
       $(".audioEffectButton").css("display", "inline-block");
-      $(".audioEffectButtonKey").css("display", "none");
+      $(".audioEffectButtonKey").css("opacity", "0");
     } else {
-      $(".buttonsHelpPlay").css("display", "block");
-      $("#textButton").css("display", "none");
-      $("#imgPlay").css("display", "none");
-      $("#textController").css("display", "none");
+      $(".buttonsHelpPlay").css("opacity", "1");
+      $("#textButton").css("opacity", "0");
+      $("#imgPlay").css("opacity", "0");
+      $("#textController").css("opacity", "0");
       $(".audioEffectButton").css("display", "inline-block");
-      $(".audioEffectButtonKey").css("display", "none");
+      $(".audioEffectButtonKey").css("opacity", "0");
     }
   },
   false
@@ -1267,8 +1282,8 @@ $(window).on(
   function (event) {
     console.log(event.detail);
     controleConect = true;
-    $("#maneteOff").css("display", "block");
-    $("#textController").css("display", "block");
+    $("#maneteOff").css("opacity", "1");
+    $("#textController").css("opacity", "1");
   },
   false
 );
