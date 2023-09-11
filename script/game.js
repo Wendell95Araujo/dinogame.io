@@ -73,12 +73,25 @@ var temaDinamico = 0;
 
 var pauseGame = false;
 
+function alturaDinamica() {
+  var alturaJanela = $(window).height();
+  var alturaGame = alturaJanela * 0.9;
+  var alturaFundoBranco = alturaJanela * 0.1;
+  $("#game").css("height", alturaGame + "px");
+  $("#fundoBranco").css("height", alturaFundoBranco + "px");
+}
+
+$(window).resize(function () {
+  alturaDinamica();
+});
+
 function loading() {
   lerStorage();
   $("#load").css("display", "none");
   window.scrollTo(0, 0);
   audioSet();
   Controller.search();
+  alturaDinamica();
 }
 
 function novoGame() {
@@ -194,7 +207,7 @@ function verificaNovoPontuador() {
   }
 }
 
-nomePontuador.addEventListener("keyup", function (event) {
+$("#pontuadorInput").on("keyup", function (event) {
   event.preventDefault();
   if (event.keyCode === 13) {
     if (caixaRecorde.style.display === "block") {
@@ -240,7 +253,7 @@ function diaTheme() {
   tema = 0;
 }
 
-document.addEventListener("keydown", (event) => {
+$(document).on("keydown", (event) => {
   if (caixaRecorde.style.display === "") {
     if (event.key === "ArrowUp") {
       if (count === 0) {
@@ -305,7 +318,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-gameDiv.addEventListener("click", (event) => {
+$("#game").on("click", (event) => {
   if (caixaRecorde.style.display === "") {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
@@ -316,7 +329,7 @@ gameDiv.addEventListener("click", (event) => {
   $("#settings").css("opacity", "0.2");
 });
 
-pontoDiv.addEventListener("click", (event) => {
+$("#pontuacao").on("click", (event) => {
   if (caixaRecorde.style.display === "") {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
@@ -327,11 +340,11 @@ pontoDiv.addEventListener("click", (event) => {
   $("#settings").css("opacity", "0.2");
 });
 
-settingsDiv.addEventListener("click", (event) => {
+$("#settings").on("click", (event) => {
   $("#settings").css("opacity", "1");
 });
 
-fundoBranco.addEventListener("click", (event) => {
+$("#FundoBranco").on("click", (event) => {
   if (caixaRecorde.style.display === "") {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
@@ -342,11 +355,11 @@ fundoBranco.addEventListener("click", (event) => {
   $("#settings").css("opacity", "0.2");
 });
 
-botaoN.addEventListener("click", (event) => {
+$("#btnN").on("click", (event) => {
   closeGame();
 });
 
-botaoS.addEventListener("click", (event) => {
+$("#btnS").on("click", (event) => {
   playGame();
 });
 
@@ -380,7 +393,7 @@ function audioSet() {
   }
 }
 
-musicOnOff.addEventListener("change", (event) => {
+$("#musicOnOff").on("change", (event) => {
   if (musicOnOff.checked) {
     musicOn = 0;
     localStorage.setItem("music", musicOn);
@@ -394,7 +407,7 @@ musicOnOff.addEventListener("change", (event) => {
   }
 });
 
-effectOnOff.addEventListener("change", (event) => {
+$("#effectOnOff").on("change", (event) => {
   if (effectOnOff.checked) {
     effectOn = 0;
     localStorage.setItem("effect", effectOn);
@@ -408,7 +421,7 @@ effectOnOff.addEventListener("change", (event) => {
   }
 });
 
-window.addEventListener(
+$(window).on(
   "gc.button.press",
   function (event) {
     var button = event.detail;
@@ -437,7 +450,7 @@ window.addEventListener(
   false
 );
 
-window.addEventListener(
+$(window).on(
   "gc.button.press",
   function (event) {
     var button = event.detail;
@@ -721,13 +734,8 @@ function playGame() {
 
     $(".chao").attr("src", "img/fundo" + selectBG + ".png");
     if (inicio % 4 === 0) {
-      $("#info").css("display", "block");
       selectMusic = parseInt(Math.random() * 4 + 1);
     }
-  }
-
-  if (inicio % 5 === 0) {
-    $("#info").css("display", "none");
   }
 
   playerWalk();
@@ -1169,7 +1177,7 @@ function playGame() {
 
   moveObstacle();
 
-  document.addEventListener("keydown", (event) => {
+  $(document).on("keydown", (event) => {
     if (caixaRecorde.style.display === "") {
       if (event.key === "ArrowUp") {
         if (count > 0) {
@@ -1182,7 +1190,7 @@ function playGame() {
     }
   });
 
-  gameDiv.addEventListener("click", (event) => {
+  $("#game").on("click", (event) => {
     if (caixaRecorde.style.display === "") {
       if (count > 0) {
         if (isGameOver !== true) {
@@ -1192,7 +1200,7 @@ function playGame() {
     }
   });
 
-  pontoDiv.addEventListener("click", (event) => {
+  $("#pontuacao").on("click", (event) => {
     if (caixaRecorde.style.display === "") {
       if (count > 0) {
         if (isGameOver !== true) {
@@ -1202,7 +1210,7 @@ function playGame() {
     }
   });
 
-  fundoBranco.addEventListener("click", (event) => {
+  $("#FundoBranco").on("click", (event) => {
     if (caixaRecorde.style.display === "") {
       if (count > 0) {
         if (isGameOver !== true) {
@@ -1212,7 +1220,7 @@ function playGame() {
     }
   });
 
-  window.addEventListener(
+  $(window).on(
     "gc.button.press",
     function (event) {
       var button = event.detail;
@@ -1235,7 +1243,7 @@ function playGame() {
 
 Controller.search();
 
-window.addEventListener(
+$(window).on(
   "gc.controller.found",
   function (event) {
     var controller = event.detail.controller;
@@ -1264,7 +1272,7 @@ window.addEventListener(
   false
 );
 
-window.addEventListener(
+$(window).on(
   "gc.controller.lost",
   function (event) {
     console.log(event.detail);
@@ -1275,7 +1283,7 @@ window.addEventListener(
   false
 );
 
-window.addEventListener(
+$(window).on(
   "gc.button.press",
   function (event) {
     var button = event.detail;
