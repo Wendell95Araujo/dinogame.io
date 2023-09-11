@@ -501,7 +501,7 @@ fieldset {
 
 /*Acessando por telas menores*/
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
   body {
     overflow-x: hidden;
     height: 100%;
@@ -577,6 +577,10 @@ fieldset {
 
   #info {
     width: 400px;
+  }
+
+  #pontuacao {
+    top: 300px;
   }
 
   .historic,
