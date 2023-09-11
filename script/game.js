@@ -713,6 +713,7 @@ function playGame() {
   }
 
   $("#textButton1").css("display", "none");
+  $("#pontuacao").css("display", "none");
 
   if (conexao === 1) {
     $("#buttonA").css("display", "block");
@@ -882,6 +883,7 @@ function playGame() {
         }
         if (inicio % 2 === 0) {
           $("#textButton1").css("display", "block");
+          $("#pontuacao").css("display", "block);
           $("#textButton2").css("display", "none");
         }
       }
