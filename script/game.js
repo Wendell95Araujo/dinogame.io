@@ -879,11 +879,12 @@ function playGame() {
       } else {
         if (inicio % 2 === 1) {
           $("#textButton1").css("display", "none");
+          $("#pontuacao").css("display", "block");
           $("#textButton2").css("display", "block");
         }
         if (inicio % 2 === 0) {
           $("#textButton1").css("display", "block");
-          $("#pontuacao").css("display", "block);
+          $("#pontuacao").css("display", "block");
           $("#textButton2").css("display", "none");
         }
       }
