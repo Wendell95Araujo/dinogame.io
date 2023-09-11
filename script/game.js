@@ -344,7 +344,7 @@ $("#settings").on("click", (event) => {
   $("#settings").css("opacity", "1");
 });
 
-$("#FundoBranco").on("click", (event) => {
+$("#fundoBranco").on("click", (event) => {
   if (caixaRecorde.style.display === "") {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
@@ -1213,7 +1213,7 @@ function playGame() {
     }
   });
 
-  $("#FundoBranco").on("click", (event) => {
+  $("#fundoBranco").on("click", (event) => {
     if (caixaRecorde.style.display === "") {
       if (count > 0) {
         if (isGameOver !== true) {
