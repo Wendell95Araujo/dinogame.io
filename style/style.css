@@ -114,17 +114,17 @@ body {
   top: -50px;
   filter: brightness(1);
   opacity: 1;
-  transition: opacity 5s, top 5s;
+  transition: opacity 7s, top 5s;
 }
 
 .lua {
   width: 300px;
   height: 300px;
   position: absolute;
-  top: -150px;
+  top: 500px;
   filter: brightness(1);
-  opacity: 1;
-  transition: top 5s;
+  opacity: 0;
+  transition: opacity 7s, top 5s;
 }
 
 #fundoEstrela1,
@@ -336,6 +336,7 @@ fieldset {
   background-color: black;
   display: block;
   text-align: center;
+  position: relative;
 }
 
 #info {

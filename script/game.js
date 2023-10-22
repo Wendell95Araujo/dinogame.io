@@ -242,7 +242,8 @@ function noiteTheme() {
   $("#nuvem3").css("opacity", "0");
   $("#nuvem5").css("opacity", "0");
   $(".fundoEstrela").css("opacity", "1");
-  $(".lua").css("top", "0");
+  $(".lua").css("top", "-50px");
+  $(".lua").css("opacity", "1");
   $(".sol").css("opacity", "0");
   $(".sol").css("top", "500px");
   tema = 1;
@@ -258,7 +259,8 @@ function diaTheme() {
   $("#nuvem3").css("opacity", "1");
   $("#nuvem5").css("opacity", "1");
   $(".fundoEstrela").css("opacity", "0");
-  $(".lua").css("top", "-150px");
+  $(".lua").css("top", "500px");
+  $(".lua").css("opacity", "0");
   $(".sol").css("opacity", "1");
   $(".sol").css("top", "-50px");
   tema = 0;
