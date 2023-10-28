@@ -1256,8 +1256,8 @@ window.addEventListener(
   "gc.controller.found",
   function (event) {
     var controller = event.detail.controller;
-    console.log("Controller found at index " + controller.index + ".");
-    console.log("'" + controller.name + "' is ready!");
+    console.log("Controle conectado. Index  " + controller.index + ".");
+    console.log("'" + controller.name + "' pronto!");
     controleConect = true;
     conexao++;
     $("#maneteON").text("'" + controller.name + "' conectado!");
