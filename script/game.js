@@ -422,7 +422,7 @@ $("#effectOnOff").on("change", (event) => {
   }
 });
 
-$(window).on(
+window.addEventListener(
   "gc.button.press",
   function (event) {
     var button = event.detail;
@@ -449,7 +449,7 @@ $(window).on(
   false
 );
 
-$(window).on(
+window.addEventListener(
   "gc.button.press",
   function (event) {
     var button = event.detail;
@@ -524,6 +524,40 @@ function playErro() {
     audioErro.volume = 0.2;
     audioErro.play();
   }
+}
+
+function playerWalk() {
+  if (pauseGame === false) {
+    playerDino.style.display = "none";
+    playerDinoWalk.style.display = "block";
+    playerDinoJump.style.display = "none";
+    playerDinoDown.style.display = "none";
+    playWalk();
+  } else {
+    playerPause();
+  }
+}
+
+function playerUp() {
+  playerDino.style.display = "none";
+  playerDinoWalk.style.display = "none";
+  playerDinoJump.style.display = "block";
+  playerDinoDown.style.display = "none";
+}
+
+function playerDown() {
+  playerDino.style.display = "none";
+  playerDinoWalk.style.display = "none";
+  playerDinoJump.style.display = "none";
+  playerDinoDown.style.display = "block";
+}
+
+function playerPause() {
+  stopWalk();
+  playerDino.style.display = "block";
+  playerDinoWalk.style.display = "none";
+  playerDinoJump.style.display = "none";
+  playerDinoDown.style.display = "none";
 }
 
 function playPonto() {
@@ -936,39 +970,7 @@ function playGame() {
     }
   }
 
-  function playerWalk() {
-    if (pauseGame === false) {
-      playerDino.style.display = "none";
-      playerDinoWalk.style.display = "block";
-      playerDinoJump.style.display = "none";
-      playerDinoDown.style.display = "none";
-      playWalk();
-    } else {
-      playerPause();
-    }
-  }
-
-  function playerUp() {
-    playerDino.style.display = "none";
-    playerDinoWalk.style.display = "none";
-    playerDinoJump.style.display = "block";
-    playerDinoDown.style.display = "none";
-  }
-
-  function playerDown() {
-    playerDino.style.display = "none";
-    playerDinoWalk.style.display = "none";
-    playerDinoJump.style.display = "none";
-    playerDinoDown.style.display = "block";
-  }
-
-  function playerPause() {
-    stopWalk();
-    playerDino.style.display = "block";
-    playerDinoWalk.style.display = "none";
-    playerDinoJump.style.display = "none";
-    playerDinoDown.style.display = "none";
-  }
+  
 
   function moveObstacle() {
     if (isGameOver) return;
@@ -1228,7 +1230,7 @@ function playGame() {
     }
   });
 
-  $(window).on(
+  window.addEventListener(
     "gc.button.press",
     function (event) {
       var button = event.detail;
@@ -1250,7 +1252,7 @@ function playGame() {
 
 Controller.search();
 
-$(window).on(
+window.addEventListener(
   "gc.controller.found",
   function (event) {
     var controller = event.detail.controller;
@@ -1279,7 +1281,7 @@ $(window).on(
   false
 );
 
-$(window).on(
+window.addEventListener(
   "gc.controller.lost",
   function (event) {
     console.log(event.detail);
@@ -1290,7 +1292,7 @@ $(window).on(
   false
 );
 
-$(window).on(
+window.addEventListener(
   "gc.button.press",
   function (event) {
     var button = event.detail;
