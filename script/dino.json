@@ -1,0 +1,46 @@
+{
+  "leaderboard": {
+    "scores": {
+      "1": {
+        "name": "Tyrannosaurus Rex",
+        "score": 1500
+      },
+      "2": {
+        "name": "Spinosaurus",
+        "score": 1400
+      },
+      "3": {
+        "name": "Giganotosaurus",
+        "score": 1300
+      },
+      "4": {
+        "name": "Carcharodontosaurus",
+        "score": 1200
+      },
+      "5": {
+        "name": "Allosaurus",
+        "score": 1000
+      },
+      "6": {
+        "name": "Suchomimus",
+        "score": 500
+      },
+      "7": {
+        "name": "Baryonyx",
+        "score": 400
+      },
+      "8": {
+        "name": "Ceratosaurus",
+        "score": 300
+      },
+      "9": {
+        "name": "Dilophosaurus",
+        "score": 200
+      },
+      "10": {
+        "name": "Velociraptor",
+        "score": 100
+      }
+    }
+  }
+}

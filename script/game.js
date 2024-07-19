@@ -89,8 +89,7 @@ $(window).resize(function () {
 });
 
 function loading() {
-  lerStorage();
-  $("#load").css("display", "none");
+  loadTopScores();
   window.scrollTo(0, 0);
   audioSet();
   Controller.search();
@@ -130,22 +129,6 @@ function lerStorage() {
 
   if (historic3) {
     ponto3.textContent = historic3;
-  }
-
-  if (historicMax) {
-    var todosMax = JSON.parse(historicMax);
-    pontoMax.textContent = todosMax[0];
-    pontoMaxName.textContent = todosMax[1];
-  }
-  if (historicMax2) {
-    var todosMax2 = JSON.parse(historicMax2);
-    pontoMax2.textContent = todosMax2[0];
-    pontoMaxName2.textContent = todosMax2[1];
-  }
-  if (historicMax3) {
-    var todosMax3 = JSON.parse(historicMax3);
-    pontoMax3.textContent = todosMax3[0];
-    pontoMaxName3.textContent = todosMax3[1];
   }
 }
 
@@ -210,27 +193,10 @@ function verificaNovoPontuador() {
   }
 }
 
-$("#pontuadorInput").on("keyup", function (event) {
+$("#pontuadorForm").on("submit", function (event) {
   event.preventDefault();
-  if (event.keyCode === 13) {
-    if (caixaRecorde.style.display === "block") {
-      document.getElementById("pontuadorButton").click();
-    }
-  }
+  salvaNovoPontuador();
 });
-
-function salvaNovoPontuador() {
-  if (nomePontuador.value == "") {
-    alert("Insira seu nome");
-  } else {
-    pontuadorList = [ponto3.textContent, nomePontuador.value];
-
-    var pontuadorJson = JSON.stringify(pontuadorList);
-    localStorage.setItem(recordNew, pontuadorJson);
-    caixaRecorde.style.display = "none";
-    location.reload();
-  }
-}
 
 function noiteTheme() {
   $(".nuvem").css("filter", "brightness(0.5)");
@@ -326,17 +292,16 @@ $(document).on("keydown", (event) => {
   }
 });
 
-$("#game").on("click", (event) => {
-  if (caixaRecorde.style.display === "") {
-    if (count === 0) {
-      if (inicio % 2 === 0 || inicio == 0) {
-        playGame();
-      }
-    }
-  }
+$("#close-top-10").on("click", (event) => {
+  $("#top10-container").css("display", "none");
 });
 
-$("#pontuacao").on("click", (event) => {
+$("#game").on("click", (event) => {
+  if ($(event.target).is("#top10")) {
+    $("#top10-container").css("display", "block");
+    return;
+  }
+
   if (caixaRecorde.style.display === "") {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
@@ -577,8 +542,8 @@ function playPonto() {
 
 function playPulo() {
   stopWalk();
-  $("#maneteON").css("opacity", "0");
-  $("#buttonA").css("opacity", "0");
+  $("#maneteON").css("display", "none");
+  $("#buttonA").css("display", "none");
   if (effectOn == 0) {
     audioJump.volume = 0.2;
     audioJump.play();
@@ -736,19 +701,19 @@ function playGame() {
   pauseGame = false;
 
   if (inicio > 3) {
-    $("#textController").css("opacity", "0");
+    $("#textController").css("display", "none");
   }
 
-  $("#textButton1").css("opacity", "0");
-  $("#pontuacao").css("opacity", "0");
+  $("#textButton1").css("display", "none");
+  $("#pontuacao").css("display", "none");
 
   if (conexao === 1) {
-    $("#buttonA").css("opacity", "1");
+    $("#buttonA").css("display", "block");
     conexao++;
   }
 
-  $(".buttonsHelp").css("opacity", "0");
-  $(".buttonStart").css("opacity", "0");
+  $(".buttonsHelp").css("display", "none");
+  $(".buttonStart").css("display", "none");
 
   if (inicio % 2 === 0) {
     selectTheme = parseInt(Math.random() * 21);
@@ -899,22 +864,22 @@ function playGame() {
       stopTrilha();
       if (controleConect) {
         if (inicio % 2 === 0) {
-          $("#maneteONPlay2").css("opacity", "1");
+          $("#maneteONPlay2").css("display", "block");
         }
         if (inicio % 2 === 1) {
-          $("#maneteONPlay").css("opacity", "1");
+          $("#maneteONPlay").css("display", "block");
         }
-        $("#maneteOff").css("opacity", "0");
+        $("#maneteOff").css("display", "none");
       } else {
         if (inicio % 2 === 1) {
-          $("#textButton1").css("opacity", "0");
-          $("#pontuacao").css("opacity", "0.8");
-          $("#textButton2").css("opacity", "1");
+          $("#textButton1").css("display", "none");
+          $("#pontuacao").css("display", "block");
+          $("#textButton2").css("display", "block");
         }
         if (inicio % 2 === 0) {
-          $("#textButton1").css("opacity", "1");
-          $("#pontuacao").css("opacity", "0.8");
-          $("#textButton2").css("opacity", "0");
+          $("#textButton1").css("display", "block");
+          $("#pontuacao").css("display", "block");
+          $("#textButton2").css("display", "none");
         }
       }
 
@@ -969,8 +934,6 @@ function playGame() {
       scoreDisplay.textContent = "Pontuação: " + parseInt(score / 10);
     }
   }
-
-  
 
   function moveObstacle() {
     if (isGameOver) return;
@@ -1262,20 +1225,20 @@ window.addEventListener(
     conexao++;
     $("#maneteON").text("'" + controller.name + "' conectado!");
     if (count === 0) {
-      $(".buttonsHelpPause").css("opacity", "1");
-      $("#textButton").css("opacity", "0");
-      $("#imgPlay").css("opacity", "0");
-      $("#textController").css("opacity", "0");
-      $("#textButton1").css("opacity", "0");
+      $(".buttonsHelpPause").css("display", "block");
+      $("#textButton").css("display", "none");
+      $("#imgPlay").css("display", "none");
+      $("#textController").css("display", "none");
+      $("#textButton1").css("display", "none");
       $(".audioEffectButton").css("display", "inline-block");
-      $(".audioEffectButtonKey").css("opacity", "0");
+      $(".audioEffectButtonKey").css("display", "none");
     } else {
-      $(".buttonsHelpPlay").css("opacity", "1");
-      $("#textButton").css("opacity", "0");
-      $("#imgPlay").css("opacity", "0");
-      $("#textController").css("opacity", "0");
+      $(".buttonsHelpPlay").css("display", "block");
+      $("#textButton").css("display", "none");
+      $("#imgPlay").css("display", "none");
+      $("#textController").css("display", "none");
       $(".audioEffectButton").css("display", "inline-block");
-      $(".audioEffectButtonKey").css("opacity", "0");
+      $(".audioEffectButtonKey").css("display", "none");
     }
   },
   false
@@ -1286,8 +1249,8 @@ window.addEventListener(
   function (event) {
     console.log(event.detail);
     controleConect = true;
-    $("#maneteOff").css("opacity", "1");
-    $("#textController").css("opacity", "1");
+    $("#maneteOff").css("display", "block");
+    $("#textController").css("display", "block");
   },
   false
 );

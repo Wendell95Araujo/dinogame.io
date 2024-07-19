@@ -374,6 +374,7 @@ fieldset {
   margin-top: 15px;
   width: 350px;
   transition: opacity 1s;
+  display: none;
 }
 
 #textController {
@@ -397,16 +398,7 @@ fieldset {
 }
 
 #textButton1 {
-  transition: opacity 1s;
-}
-
-#textButton2,
-.buttonsHelp,
-.buttonStart,
-#maneteOff,
-#buttonA {
-  opacity: 0;
-  transition: opacity 0.5s;
+  display: block;
 }
 
 @keyframes fadeIn {
@@ -439,9 +431,7 @@ fieldset {
   display: block;
   margin: 10px auto 10px;
   border: solid 2px black;
-  vertical-align: top;
   background-color: skyblue;
-  width: 300px;
 }
 
 .titulo-ponto {
@@ -456,6 +446,7 @@ fieldset {
   display: block;
   text-align: justify;
   color: black;
+  padding: 5px;
 }
 
 .pontuacoes {
@@ -463,12 +454,59 @@ fieldset {
   font-weight: bold;
   font-size: 20px;
   background-color: skyblue;
-  padding: 10px;
 }
 
 .name {
   display: inline-block;
   text-transform: capitalize;
+}
+
+#top10-container {
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: skyblue;
+  display: none;
+}
+
+#max-top-10{
+  width: 500px;
+}
+
+#titulo-top-10 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkblue;
+}
+
+#close-top-10 {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#top10 {
+  height: 100%;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: darkblue;
+  cursor: pointer;
+}
+
+#top10:hover {
+  background-color: skyblue;
+}
+
+#top10:focus-visible {
+  outline: none;
 }
 
 /*-------------------------*/
@@ -573,7 +611,7 @@ fieldset {
 
 /*Acessando pelo celular*/
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 650px) {
   body {
     overflow: hidden;
     height: 100%;
@@ -618,5 +656,9 @@ fieldset {
   .historic,
   .maxPont {
     margin: 10px auto 0;
+  }
+
+  #max-top-10{
+    width: 90%;
   }
 }

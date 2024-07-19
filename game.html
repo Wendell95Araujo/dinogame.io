@@ -13,6 +13,10 @@
   <link rel="stylesheet" type="text/css" href="style/style.css" />
   <script src="script/Controller.min.js"></script>
   <script src="script/Controller.layouts.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 
 <body onload="loading()">
@@ -32,11 +36,22 @@
   <div class="inputPontuador">
     <div class="blocoPontuador">
       <h1 class="titulo-ponto titulo-recorde">NOVO RECORDE!</h1>
-      <label for="pontuador" class="pontuadorLabel">Insira seu nome:</label>
-      <input type="text" name="pontuador" id="pontuadorInput" class="pontuadorInput" autocomplete="off" />
-      <button class="pontuadorButton" id="pontuadorButton" required minlength="3" onclick="salvaNovoPontuador()">
-        OK!
-      </button>
+      <form id="pontuadorForm">
+        <label for="pontuador" class="pontuadorLabel">Insira seu nome:</label>
+        <input type="text" name="pontuador" id="pontuadorInput" class="pontuadorInput" autocomplete="off" />
+        <button type="submit" class="pontuadorButton" id="pontuadorButton" required minlength="3" onclick="salvaNovoPontuador()">
+          OK!
+        </button>
+      </form>
+    </div>
+  </div>
+  <div id="top10-container">
+    <div class="maxPont" id="max-top-10">
+      <div id="titulo-top-10">
+        <h1 class="titulo-ponto" unselectable="on">TOP 10:</h1><span class="titulo-ponto" id="close-top-10">X</span>
+      </div>
+      <div class="linhaTabel" id="top-scores-max">
+      </div>
     </div>
   </div>
   <div id="game">
@@ -103,33 +118,10 @@
     <div id="pontuacao">
       <div class="maxPont">
         <h1 class="titulo-ponto" unselectable="on">TOP 3:</h1>
-        <div class="linhaTabel">
-          <p class="pontuacoes name" unselectable="on">1º</p>
-          <p class="pontuacoes name" unselectable="on">-</p>
-          <p class="pontuacoes name" id="pontoMaxName" unselectable="on">
-            t-Rex
-          </p>
-          <p class="pontuacoes name" unselectable="on">-</p>
-          <p class="pontuacoes name" id="pontoMax" unselectable="on">2500</p>
+        <div class="linhaTabel" id="top-scores">
         </div>
-        <div class="linhaTabel">
-          <p class="pontuacoes name" unselectable="on">2º</p>
-          <p class="pontuacoes name" unselectable="on">-</p>
-          <p class="pontuacoes name" id="pontoMaxName2" unselectable="on">
-            velox
-          </p>
-          <p class="pontuacoes name" unselectable="on">-</p>
-          <p class="pontuacoes name" id="pontoMax2" unselectable="on">1000</p>
-        </div>
-        <div class="linhaTabel">
-          <p class="pontuacoes name" unselectable="on">3º</p>
-          <p class="pontuacoes name" unselectable="on">-</p>
-          <p class="pontuacoes name" id="pontoMaxName3" unselectable="on">
-            dino
-          </p>
-          <p class="pontuacoes name" unselectable="on">-</p>
-          <p class="pontuacoes name" id="pontoMax3" unselectable="on">500</p>
-        </div>
+        <h2 class="titulo-ponto" unselectable="on">
+          <button id="top10">TOP 10</button></h2>
       </div>
       <div class="historic">
         <h1 class="titulo-ponto">Últimas pontuações:</h1>
@@ -149,7 +141,7 @@
           <p class="pontuacoes name" id="ponto1" unselectable="on"></p>
         </div>
       </div>
-    </div>
+    </div>    
     <div class="botoes">
       <p id="score">Pontuação: 0</p>
       <p id="textController" class="textButton fade">Conecte um controle!</p>
@@ -215,9 +207,8 @@
       Dino Dancer Game<br>
       Criado por Wendell Araújo</p>
   </div>
-  <script src="script/cookie.js"></script>
-  <script src="script/jquery.js"></script>
-  <script src="script/game.js"></script>
+  <script src="script/firebase-config.min.js"></script>
+  <script src="script/game.min.js"></script>
 </body>
 
 </html>
