@@ -23,23 +23,63 @@
       },
       "6": {
         "name": "Suchomimus",
-        "score": 500
+        "score": 900
       },
       "7": {
         "name": "Baryonyx",
-        "score": 400
+        "score": 800
       },
       "8": {
         "name": "Ceratosaurus",
-        "score": 300
+        "score": 700
       },
       "9": {
         "name": "Dilophosaurus",
-        "score": 200
+        "score": 600
       },
       "10": {
         "name": "Velociraptor",
-        "score": 100
+        "score": 500
+      },
+      "11": {
+        "name": "Therizinosaurus",
+        "score": 450
+      },
+      "12": {
+        "name": "Iguanodon",
+        "score": 400
+      },
+      "13": {
+        "name": "Pachycephalosaurus",
+        "score": 350
+      },
+      "14": {
+        "name": "Ankylosaurus",
+        "score": 300
+      },
+      "15": {
+        "name": "Stegosaurus",
+        "score": 250
+      },
+      "16": {
+        "name": "Apatosaurus",
+        "score": 200
+      },
+      "17": {
+        "name": "Diplodocus",
+        "score": 150
+      },
+      "18": {
+        "name": "Brontosaurus",
+        "score": 125
+      },
+      "19": {
+        "name": "Compsognathus",
+        "score": 110
+      },
+      "20": {
+        "name": "Protoceratops",
+        "score": 105
       }
     }
   }

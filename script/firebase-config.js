@@ -34,13 +34,19 @@ function salvaNovoPontuador() {
         }
       }
 
-      scoresArray.push({ key: null, name: nomePontuador, score: novoPonto });
+      if (
+        scoresArray.length < 20 ||
+        novoPonto > scoresArray[scoresArray.length - 1].score
+      ) {
+        scoresArray.push({ key: null, name: nomePontuador, score: novoPonto });
+      }
+
       scoresArray.sort(function (a, b) {
         return b.score - a.score;
       });
 
-      if (scoresArray.length > 10) {
-        scoresArray.length = 10;
+      if (scoresArray.length > 20) {
+        scoresArray.length = 20;
       }
 
       var updates = {};
@@ -55,7 +61,6 @@ function salvaNovoPontuador() {
         .update(updates)
         .then(function () {
           $(".inputPontuador").hide();
-          $(".input Pontuador").val("");
           loadTopScores();
         })
         .catch(function (error) {
@@ -81,34 +86,39 @@ function loadTopScores() {
         return b.score - a.score;
       });
 
+      while (topScores.length < 20) {
+        topScores.push({ name: "-", score: "-" });
+      }
+
       var topScoresContainer = $("#top-scores");
       var topScoresContainerMax = $("#top-scores-max");
       topScoresContainer.empty();
+      topScoresContainerMax.empty();
 
       topScores.forEach(function (score, index) {
         if (index < 3) {
           topScoresContainer.append(
             `<div class="linhaTabel">
-            <p class="pontuacoes name" unselectable="on">${index + 1}º</p>
-            <p class="pontuacoes name" unselectable="on">-</p>
-            <p class="pontuacoes name" unselectable="on">${score.name}</p>
-            <p class="pontuacoes name" unselectable="on">-</p>
-            <p class="pontuacoes name" unselectable="on">${score.score}</p>
-          </div>`
+                <p class="pontuacoes position" unselectable="on">${
+                  index + 1
+                }º</p>
+                <p class="pontuacoes name" unselectable="on">${score.name}</p>
+                <p class="pontuacoes score" unselectable="on">${score.score}</p>
+              </div>`
           );
         }
-        if (index < 10) {
-          topScoresContainerMax.append(
-            `<div class="linhaTabel">
-            <p class="pontuacoes name" unselectable="on">${index + 1}º</p>
-            <p class="pontuacoes name" unselectable="on">-</p>
-            <p class="pontuacoes name" unselectable="on">${score.name}</p>
-            <p class="pontuacoes name" unselectable="on">-</p>
-            <p class="pontuacoes name" unselectable="on">${score.score}</p>
-          </div>`
-          );
-        }
+
+        topScoresContainerMax.append(
+          `<div class="linhaTabel">
+              <p class="pontuacoes position" unselectable="on">${(index + 1)
+                .toString()
+                .padStart(2, "0")}º</p>
+              <p class="pontuacoes name" unselectable="on">${score.name}</p>
+              <p class="pontuacoes score" unselectable="on">${score.score}</p>
+            </div>`
+        );
       });
+
       $("#load").fadeOut(500);
     })
     .catch(function (error) {

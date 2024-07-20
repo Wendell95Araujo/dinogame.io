@@ -140,57 +140,104 @@ function salvaStorage() {
 
 function verificaNovoPontuador() {
   var novoPonto = parseInt(ponto3.textContent);
-  var pontoHist1 = parseInt(pontoMax.textContent);
-  var pontoHist2 = parseInt(pontoMax2.textContent);
-  var pontoHist3 = parseInt(pontoMax3.textContent);
+  var scoresRef = firebase.database().ref("leaderboard/scores");
 
-  if (novoPonto > pontoHist1) {
-    recordNew = 10;
+  scoresRef
+    .once("value")
+    .then(function (snapshot) {
+      var scores = snapshot.val();
+      var scoresArray = [];
 
-    pontoMax3.textContent = pontoMax2.textContent;
-    pontoMax2.textContent = pontoMax.textContent;
+      if (scores) {
+        for (var key in scores) {
+          if (scores.hasOwnProperty(key)) {
+            scoresArray.push({
+              key: key,
+              name: scores[key].name,
+              score: scores[key].score,
+            });
+          }
+        }
+      }
+      scoresArray.sort(function (a, b) {
+        return b.score - a.score;
+      });
 
-    pontoMaxName3.textContent = pontoMaxName2.textContent;
-    pontoMaxName2.textContent = pontoMaxName.textContent;
+      if (scoresArray.length < 20 || novoPonto > scoresArray[19].score) {
+        caixaRecorde.style.display = "block";
+        playAplauso();
+        nomePontuador.focus();
+      }
+    })
+    .catch(function (error) {
+      console.error("Erro ao verificar pontuações: ", error);
+    });
+}
 
-    pontuadorList2 = [pontoMax2.textContent, pontoMaxName2.textContent];
-
-    pontuadorList3 = [pontoMax3.textContent, pontoMaxName3.textContent];
-
-    var pontuadorJson2 = JSON.stringify(pontuadorList2);
-    localStorage.setItem(11, pontuadorJson2);
-
-    var pontuadorJson3 = JSON.stringify(pontuadorList3);
-    localStorage.setItem(12, pontuadorJson3);
-
-    caixaRecorde.style.display = "block";
-    playAplauso();
-    nomePontuador.focus();
+function salvaNovoPontuador() {
+  var nomePontuador = $("#pontuadorInput").val();
+  if (nomePontuador === "") {
+    alert("Insira seu nome");
+    return;
   }
 
-  if (novoPonto > pontoHist2 && novoPonto < pontoHist1) {
-    recordNew = 11;
+  var novoPonto = parseInt($("#ponto3").text());
+  var scoresRef = firebase.database().ref("leaderboard/scores");
 
-    pontoMax3.textContent = pontoMax2.textContent;
+  scoresRef
+    .once("value")
+    .then(function (snapshot) {
+      var scores = snapshot.val();
+      var scoresArray = [];
 
-    pontoMaxName3.textContent = pontoMaxName2.textContent;
+      if (scores) {
+        for (var key in scores) {
+          if (scores.hasOwnProperty(key)) {
+            scoresArray.push({
+              key: key,
+              name: scores[key].name,
+              score: scores[key].score,
+            });
+          }
+        }
+      }
 
-    pontuadorList3 = [pontoMax3.textContent, pontoMaxName3.textContent];
+      scoresArray.push({
+        key: null,
+        name: nomePontuador,
+        score: novoPonto,
+      });
 
-    var pontuadorJson3 = JSON.stringify(pontuadorList3);
-    localStorage.setItem(12, pontuadorJson3);
+      scoresArray.sort(function (a, b) {
+        return b.score - a.score;
+      });
 
-    caixaRecorde.style.display = "block";
-    playAplauso();
-    nomePontuador.focus();
-  }
+      if (scoresArray.length > 20) {
+        scoresArray.length = 20;
+      }
+      
+      var updates = {};
+      for (var i = 0; i < scoresArray.length; i++) {
+        updates[(i + 1).toString()] = {
+          name: scoresArray[i].name,
+          score: scoresArray[i].score,
+        };
+      }
 
-  if (novoPonto > pontoHist3 && novoPonto < pontoHist2) {
-    recordNew = 12;
-    caixaRecorde.style.display = "block";
-    playAplauso();
-    nomePontuador.focus();
-  }
+      scoresRef
+        .update(updates)
+        .then(function () {
+          $(".inputPontuador").hide();
+          $(".inputPontuador").val("");
+          loadTopScores();
+        })
+        .catch(function (error) {
+          console.error("Erro ao salvar pontuador: ", error);
+        });
+    })
+    .catch(function (error) {
+      console.error("Erro ao carregar pontuações: ", error);
+    });
 }
 
 $("#pontuadorForm").on("submit", function (event) {
@@ -233,7 +280,10 @@ function diaTheme() {
 }
 
 $(document).on("keydown", (event) => {
-  if (caixaRecorde.style.display === "") {
+  if (
+    caixaRecorde.style.display === "none" ||
+    caixaRecorde.style.display === ""
+  ) {
     if (event.key === "ArrowUp") {
       if (count === 0) {
         if (inicio % 2 === 0 || inicio == 0) {
@@ -292,17 +342,20 @@ $(document).on("keydown", (event) => {
   }
 });
 
-$("#close-top-10").on("click", (event) => {
-  $("#top10-container").css("display", "none");
+$("#close-top-20").on("click", (event) => {
+  $("#top20-container").css("display", "none");
 });
 
 $("#game").on("click", (event) => {
-  if ($(event.target).is("#top10")) {
-    $("#top10-container").css("display", "block");
+  if ($(event.target).is("#top20")) {
+    $("#top20-container").css("display", "flex");
     return;
   }
 
-  if (caixaRecorde.style.display === "") {
+  if (
+    caixaRecorde.style.display === "none" ||
+    caixaRecorde.style.display === ""
+  ) {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
         playGame();
@@ -312,7 +365,10 @@ $("#game").on("click", (event) => {
 });
 
 $("#fundoBranco").on("click", (event) => {
-  if (caixaRecorde.style.display === "") {
+  if (
+    caixaRecorde.style.display === "none" ||
+    caixaRecorde.style.display === ""
+  ) {
     if (count === 0) {
       if (inicio % 2 === 0 || inicio == 0) {
         playGame();
@@ -392,7 +448,10 @@ window.addEventListener(
   function (event) {
     var button = event.detail;
     if (button.pressed) {
-      if (caixaRecorde.style.display === "") {
+      if (
+        caixaRecorde.style.display === "none" ||
+        caixaRecorde.style.display === ""
+      ) {
         if (button.name == "FACE_3") {
           if (musicOnOff.checked) {
             musicOnOff.checked = false;
@@ -419,7 +478,10 @@ window.addEventListener(
   function (event) {
     var button = event.detail;
     if (button.pressed) {
-      if (caixaRecorde.style.display === "") {
+      if (
+        caixaRecorde.style.display === "none" ||
+        caixaRecorde.style.display === ""
+      ) {
         if (button.name == "FACE_4") {
           if (effectOnOff.checked) {
             effectOnOff.checked = false;
@@ -1152,7 +1214,10 @@ function playGame() {
   moveObstacle();
 
   $(document).on("keydown", (event) => {
-    if (caixaRecorde.style.display === "") {
+    if (
+      caixaRecorde.style.display === "none" ||
+      caixaRecorde.style.display === ""
+    ) {
       if (event.key === "ArrowUp") {
         if (count > 0) {
           if (isGameOver !== true) {
@@ -1164,7 +1229,10 @@ function playGame() {
   });
 
   $("#game").on("click", (event) => {
-    if (caixaRecorde.style.display === "") {
+    if (
+      caixaRecorde.style.display === "none" ||
+      caixaRecorde.style.display === ""
+    ) {
       if (count > 0) {
         if (isGameOver !== true) {
           jump();
@@ -1174,7 +1242,10 @@ function playGame() {
   });
 
   $("#pontuacao").on("click", (event) => {
-    if (caixaRecorde.style.display === "") {
+    if (
+      caixaRecorde.style.display === "none" ||
+      caixaRecorde.style.display === ""
+    ) {
       if (count > 0) {
         if (isGameOver !== true) {
           jump();
@@ -1184,7 +1255,10 @@ function playGame() {
   });
 
   $("#fundoBranco").on("click", (event) => {
-    if (caixaRecorde.style.display === "") {
+    if (
+      caixaRecorde.style.display === "none" ||
+      caixaRecorde.style.display === ""
+    ) {
       if (count > 0) {
         if (isGameOver !== true) {
           jump();
@@ -1198,7 +1272,10 @@ function playGame() {
     function (event) {
       var button = event.detail;
       if (button.pressed) {
-        if (caixaRecorde.style.display === "") {
+        if (
+          caixaRecorde.style.display === "none" ||
+          caixaRecorde.style.display === ""
+        ) {
           if (button.name == "FACE_1") {
             if (count > 0) {
               if (isGameOver !== true) {
@@ -1260,7 +1337,10 @@ window.addEventListener(
   function (event) {
     var button = event.detail;
     if (button.pressed) {
-      if (caixaRecorde.style.display === "") {
+      if (
+        caixaRecorde.style.display === "none" ||
+        caixaRecorde.style.display === ""
+      ) {
         if (button.name == "START") {
           if (inicio % 2 === 0 || inicio == 0) {
             if (count === 0) {
