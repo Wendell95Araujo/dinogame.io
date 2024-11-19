@@ -28,9 +28,8 @@ Principais recursos:
 - Música aleatória;
 - Configuração de som (escolha o que deseja ouvir);
 - Últimas pontuações;
-- Placar de líderes;
+- Placar de líderes salvo no Firebase Realtime Database;
 - Armazenamento de dados no local Storage.
-
 
 # 📁 Acesso ao Projeto
 
