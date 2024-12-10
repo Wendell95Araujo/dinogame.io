@@ -1,4 +1,16 @@
-function _0x5af8($,x){let e=_0x3d2d();return(_0x5af8=function($,x){return e[$-=311]})($,x)}function _0x3d2d(){let $=["initializeApp","1:319939450037:web:d1ff54ba065a8db7e11afc","2732iUZuNM","559592eBcUhC","240636gLeEcI","AIzaSyB7sVjddrHRZIhQN5o_sbHOfXK7BR4ab9I","17638148WQlIcA","63IJlLTB","919610oYrfBj","6160700ffUAZF","14GVUYdx","https://dino-dancer-default-rtdb.firebaseio.com","83394BRPtXv","4xbyEGp","319939450037","124QmlelY"];return(_0x3d2d=function(){return $})()}(function($,x){let e=_0x5af8,a=$();for(;;)try{let _=parseInt(e(316))/1*(-parseInt(e(319))/2)+-parseInt(e(313))/3*(-parseInt(e(314))/4)+parseInt(e(325))/5+-parseInt(e(321))/6*(parseInt(e(311))/7)+-parseInt(e(320))/8*(parseInt(e(324))/9)+-parseInt(e(326))/10+parseInt(e(323))/11;if(459879===_)break;a.push(a.shift())}catch(t){a.push(a.shift())}})(_0x3d2d,459879),function(){let $=_0x5af8,x={apiKey:$(322),authDomain:"dino-dancer.firebaseapp.com",databaseURL:$(312),projectId:"dino-dancer",storageBucket:"dino-dancer.appspot.com",messagingSenderId:$(315),appId:$(318)};firebase[$(317)](x)}();
+(function () {
+  const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU_AUTH_DOMAIN",
+    databaseURL: "SUA_DATABASE_URL",
+    projectId: "SEU_PROJECT_ID",
+    storageBucket: "SEU_STORAGE_BUCKET",
+    messagingSenderId: "SEU_SENDER_ID",
+    appId: "SEU_APP_ID"
+};
+
+  firebase.initializeApp(firebaseConfig);
+})();
 
 const database = firebase.database();
 
