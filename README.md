@@ -33,7 +33,7 @@ Principais recursos:
 
 # 📁 Acesso ao Projeto
 
->Para acessar a página [clique aqui](https://wendell95araujo.github.io/dinogame.io/)
+>Para acessar a página [clique aqui](https://wendell-araujo.vercel.app/games/dino-game/)
 
 Neste repositório você tem acesso a todo o material.
 
