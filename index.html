@@ -5,27 +5,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <title>Dino Dancer</title>
-  <link rel="shortcut icon" href="img/dino.ico" />
+  <link rel="shortcut icon" href="../../games/dino-dancer-game/img/dino.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="style/reset.css" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-  <script src="script/Controller.min.js"></script>
-  <script src="script/Controller.layouts.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../games/dino-dancer-game/style/reset.css" />
+  <link rel="stylesheet" type="text/css" href="../../games/dino-dancer-game/style/style.css" />
+  <script src="../../games/dino-dancer-game/script/Controller.min.js"></script>
+  <script src="../../games/dino-dancer-game/script/Controller.layouts.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body onload="novoGame()">
   <div id="load3">
     <div id="loadBorder2">
-      <img id="load4" alt="Dino" class="dinoLoad" src="img/dino.gif" />
+      <img id="load4" alt="Dino" class="dinoLoad" src="../../games/dino-dancer-game/img/dino.gif" />
       <p class="subtituloLoad2" id="subtituloLoadIndex">
-        Seu jogo abrirá em uma nova janela, aguarde...
+        <span id="subtituloLoadIndex2">DINO DANCER</span>
+        <br />
+        <br />
+        <span id="subtituloLoadIndex3">Carregando...</span>
+        <button onclick="openGame()" id="openGame">Abrir Jogo</button>
       </p>
     </div>
   </div>
-  <script src="script/game.min.js"></script>
+  <script src="../../games/dino-dancer-game/script/game.min.js"></script>
 </body>
 
 </html>

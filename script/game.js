@@ -98,16 +98,14 @@ function loading() {
 
 function novoGame() {
   setTimeout(function () {
-    $("#subtituloLoadIndex").text(
-      "Tudo pronto. Pode fechar esta janela. Para iniciar um novo jogo recarregue a página."
-    );
+    $("#openGame").css("display", "block");
+    $("#subtituloLoadIndex3").css("display", "none");
     $("#load4").attr("src", "img/dino.png");
-    openGame();
   }, 3000);
 }
 
 function openGame() {
-  myGame = window.open("game.html", "_blank");
+  myGame = window.open("../../games/dino-dancer-game/game.html", "_blank");
 }
 
 function closeGame() {
@@ -215,7 +213,7 @@ function salvaNovoPontuador() {
       if (scoresArray.length > 20) {
         scoresArray.length = 20;
       }
-      
+
       var updates = {};
       for (var i = 0; i < scoresArray.length; i++) {
         updates[(i + 1).toString()] = {
