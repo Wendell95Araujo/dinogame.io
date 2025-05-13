@@ -100,7 +100,7 @@ function novoGame() {
   setTimeout(function () {
     $("#openGame").css("display", "block");
     $("#subtituloLoadIndex3").css("display", "none");
-    $("#load4").attr("src", "img/dino.png");
+    $("#load4").attr("src", "../../games/dino-dancer-game/img/dino.png");
   }, 3000);
 }
 
